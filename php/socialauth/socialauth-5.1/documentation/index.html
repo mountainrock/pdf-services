@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>SocialAuth v5.0 Documentation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="SocialAuth Script 5.0 Documentation">
+        <meta name="author" content="Hüseyin BABAL">
+    
+        <!-- loading the css -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/prism.css" rel="stylesheet">
+        
+		<style type="text/css">
+            body {
+                padding-top: 70px;
+                padding-bottom: 30px;
+            }
+
+            .theme-dropdown .dropdown-menu {
+                position: static;
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            .theme-showcase > p > .btn {
+                margin: 5px 0;
+            }
+
+            .theme-showcase .navbar .container {
+                width: auto;
+            }
+        </style>
+        
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    
+    
+        
+    <body role="document">
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">SocialAuth</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#architecture">Architecture</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#dbintegration">DB Integration</a></li>
+                        <li><a href="#usage">Usage</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+
+        <div class="container theme-showcase" role="main">
+            <div class="jumbotron" id="overview">
+                <h1>SocialAuth v5.0 Documentation</h1>
+                <p>SocailAuth is a script that lets you authorize your sign-in with social newtorks like Facebook, Twitter, Linkedin, Google, Yahoo, and much more. It has also db integration to store social profiles for future use.</p>
+                <p><blockquote>Thank you for purchasing my script. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://codecanyon.net/user/cubuzoa">here</a>. Thanks so much!</blockquote></p>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a href="http://huseyinbabal.net/support/forum/socialauth-support/" class="btn btn-primary btn-large btn-block">Item Support</a>
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="http://huseyinbabal.net/support/" class="btn btn-warning btn-large btn-block">Support Forum</a>
+                    </div>
+                    <div class="col-lg-3">
+                        <button href="#changelog" role="button" class="btn btn-success btn-large btn-block" data-toggle="modal" data-target="#changelog">Changelog</button>
+                    </div>
+                    <div class="col-lg-3">
+                        <button href="#credits" role="button" class="btn btn-info btn-large btn-block" data-toggle="modal" data-target="#credits">Credits</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="architecture">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <strong><i class="fa fa-cogs fa-fw"></i> Architecture</strong>
+                            </div>
+                            <div class="panel-body">
+                                <ol>
+                                    <li>When user clicks login login on the site, system handles login request and creates adapter by using parameters in url.</li>
+                                    <li>System creates adapter according to configs that you provided and redirects you to social network. If permission required, social network opens popup to authorize.</li>
+                                    <li>After successful authorization user redirected to your system. On this section, system has user social information. First, checks DB for existance. If not, user data will be saved into DB</li>
+                                    <li>User redirected to callback page on your system. All the required session has written</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="installation">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <strong><i class="fa fa-download fa-fw"></i> Installation</strong>
+                            </div>
+                            <div class="panel-body">
+                                <p>Installation is the easiest part of the document. There is a GUI for installation, there is no boring config file anymore. For installation, you need to create app for each social network.
+                                    You can find detailed documentations on right side. To install configs for your system, Put socialauth files to your web server root(www e.g.). And open <strong>http://your.web.server/socialauth/installation/index.php</strong>
+                                </p>
+
+                                <div class="alert alert-warning"> <a class="close" data-dismiss="alert">×</a> <strong>Important!</strong> After installation, copy socialauth folder to your system, delete <code>installation</code> folder</div>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Social Network</th>
+                                            <th>Application Create Documentation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Facebook</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-facebook-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-facebook-app-for-your-website/</a> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Twitter</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-twitter-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-twitter-app-for-your-website</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Google</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-google-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-google-app-for-your-website</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Linkedin</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-linkedin-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-linkedin-app-for-your-website</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Yahoo</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-yahoo-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-yahoo-app-for-your-website</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Foursquare</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-foursquare-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-foursquare-app-for-your-website</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Github</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-github-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-github-app-for-your-website</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tumblr</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-tumblr-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-tumblr-app-for-your-website</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vkontakte</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-vkontakte-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-vkontakte-app-for-your-website</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Instagram</td>
+                                            <td><a href="http://huseyinbabal.net/how-to-create-instagram-app-for-your-website/" target="_blank">http://huseyinbabal.net/how-to-create-instagram-app-for-your-website</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="dbintegration">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <strong><i class="fa fa-database fa-fw"></i> DB Integration</strong>
+                            </div>
+                            <div class="panel-body">
+                                <p>SocialAuth saves user data in to database by using config that you provided. You need to provide some basic DB informations. <code>host</code>,<code>username</code>,<code>password</code>. Full list of requirements exists in installation page. Please be sure you have running mysql database and required user password db</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="usage">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <strong><i class="fa fa-code fa-fw"></i> Usage</strong>
+                            </div>
+                            <div class="panel-body">
+                                <p>In order to use SocialAuth, you need to include two files: <code>configs.php</code> and <code>Social_Auth.php</code>
+                                    After that, you need to create an adapter for specified network. Example;
+<pre class="line-numbers">
+<code class="language-php">&lt;?php
+    $config = dirname(__FILE__) . '/config.php';
+    require_once( dirname(__FILE__) . '/Social/Auth.php' );
+    $adapter = $socialAuth->authenticate( "facebook" );
+    $userData = $adapter->getUserProfile();
+?&gt;</code>
+</pre>
+                                There is also some javascript related operations. You need to add some js and css files to your system. You can see those files in <code>signin.php</code>. In order to implement signin operation, you can use two ways: Normal, and Popup.
+                                In order to signin user in popup, you can add <code>popup</code> to form group that social buttons exists in. Refer <code>signin.php</code> for more detail. Additionally, you can use normal login system, forgot password, and signup form. There is also examples about that in <code>signin.php</code>
+                                </p>
+                                <h3>Normal Signin</h3>
+                                <p>
+<pre data-line="1">
+<code class="language-markup">&lt;div class=&quot;form-group&quot;&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=facebook&quot; class=&quot;btn btn-social-icon btn-facebook&quot;&gt;&lt;i class=&quot;fa fa-facebook&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=twitter&quot; class=&quot;btn btn-social-icon btn-twitter&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=linkedin&quot; class=&quot;btn btn-social-icon btn-linkedin&quot;&gt;&lt;i class=&quot;fa fa-linkedin&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=google&quot; class=&quot;btn btn-social-icon btn-google-plus&quot;&gt;&lt;i class=&quot;fa fa-google-plus&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=yahoo&quot; class=&quot;btn btn-social-icon btn-yahoo&quot;&gt;&lt;i class=&quot;fa fa-yahoo&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=foursquare&quot; class=&quot;btn btn-social-icon btn-foursquare&quot;&gt;&lt;i class=&quot;fa fa-foursquare&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=github&quot; class=&quot;btn btn-social-icon btn-github&quot;&gt;&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=vkontakte&quot; class=&quot;btn btn-social-icon btn-vk&quot;&gt;&lt;i class=&quot;fa fa-vk&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=instagram&quot; class=&quot;btn btn-social-icon btn-instagram&quot;&gt;&lt;i class=&quot;fa fa-instagram&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=tumblr&quot; class=&quot;btn btn-social-icon btn-tumblr&quot;&gt;&lt;i class=&quot;fa fa-tumblr&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code>
+</pre>
+                                </p>
+                                <h3>Popup Signin</h3>
+                                <p><pre data-line="1">
+<code class="language-markup">&lt;div class=&quot;form-group popup&quot;&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=facebook&quot; class=&quot;btn btn-social-icon btn-facebook&quot;&gt;&lt;i class=&quot;fa fa-facebook&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=twitter&quot; class=&quot;btn btn-social-icon btn-twitter&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=linkedin&quot; class=&quot;btn btn-social-icon btn-linkedin&quot;&gt;&lt;i class=&quot;fa fa-linkedin&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=google&quot; class=&quot;btn btn-social-icon btn-google-plus&quot;&gt;&lt;i class=&quot;fa fa-google-plus&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=yahoo&quot; class=&quot;btn btn-social-icon btn-yahoo&quot;&gt;&lt;i class=&quot;fa fa-yahoo&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=foursquare&quot; class=&quot;btn btn-social-icon btn-foursquare&quot;&gt;&lt;i class=&quot;fa fa-foursquare&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=github&quot; class=&quot;btn btn-social-icon btn-github&quot;&gt;&lt;i class=&quot;fa fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=vkontakte&quot; class=&quot;btn btn-social-icon btn-vk&quot;&gt;&lt;i class=&quot;fa fa-vk&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=instagram&quot; class=&quot;btn btn-social-icon btn-instagram&quot;&gt;&lt;i class=&quot;fa fa-instagram&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-1 control&quot;&gt;
+    &lt;a href=&quot;?network=tumblr&quot; class=&quot;btn btn-social-icon btn-tumblr&quot;&gt;&lt;i class=&quot;fa fa-tumblr&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;</code>
+</pre></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-success">
+                        <p>Once again, thank you so much for purchasing this script. As I said at the beginning, I'd be glad to help you if you have any questions relating to this script. No guarantees, but I'll do my best to assist. If you have a more general question relating to the scripts on Codecanyon, you might consider visiting the forums and asking your question <a href="http://huseyinbabal.net/support/" target="_blank">here</a> .</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal Changelog-->
+        <div class="modal fade" id="changelog" tabindex="-1" role="dialog" aria-labelledby="changelogLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="changelogLabel">Changelog</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>Modular structure applied</li>
+                            <li>DB Integration</li>
+                            <li>User Activity</li>
+                            <li>User Contacts</li>
+                            <li>User Timeline</li>
+                            <li>Advanced Examples</li>
+                            <li>Login Themes</li>
+                            <li>GUI Installation</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Credits-->
+        <div class="modal fade" id="credits" tabindex="-1" role="dialog" aria-labelledby="creditsLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="creditsLabel">Credits</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>PHP</li>
+                            <li>MySQL</li>
+                            <li>Twitter Bootstrap</li>
+                            <li>jQuery</li>
+                            <li>Oauth</li>
+                            <li>Oauth2</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- loading javascripts -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="assets/js/prism.js"></script>
+        
+        <!-- init javascripts -->
+        <script>
+            $(function() {
+                $('a[href^="#"]').click(function() {
+                    var target = $(this.hash);
+                    if (target.length == 0) target = $('a[name="' + this.hash.substr(1) + '"]');
+                    if (target.length == 0) target = $('html');
+                    $('html, body').animate({ scrollTop: target.offset().top }, 500);
+                    return false;
+                });
+            });
+        </script>
+         
+    </body>
+    
+</html>
