@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.san.jshoutbox.dao.ShoutDAO;
@@ -24,7 +22,7 @@ public class ShoutBoxController {
 	CommonVelocityLayoutView layoutView;
 	String viewName = "shout";
 
-	@RequestMapping(value = "/shout", method = RequestMethod.GET)
+	//@RequestMapping(value = "/shout", method = RequestMethod.GET)
 	protected ModelAndView showForm() throws Exception {
 		List<ShoutEntry> shouts = shoutDAO.readAll();
 		ModelAndView mv = getDefaultModelAndView(viewName);
@@ -32,7 +30,7 @@ public class ShoutBoxController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/shout", method = RequestMethod.POST)
+	//@RequestMapping(value = "/shout", method = RequestMethod.POST)
 	protected ModelAndView onSubmit(ShoutBoxCommand cmd, HttpServletRequest request) throws Exception {
 		ModelAndView mv = getDefaultModelAndView(viewName);
 
