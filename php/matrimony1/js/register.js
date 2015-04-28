@@ -34,46 +34,14 @@
 				theform.email.focus();
 				return false;
 			}
-			
-			
-			
-			else if(theform.retypeemail.value == "")
-			{
-				alert("Please Re-type Email");
-				theform.retypeemail.focus();
-				return false;
-			}
-			
-			else if(theform.retypeemail.value != theform.email.value)
-			{
-				alert("Email Mismatch! Please Re-type correct Email");
-				theform.retypeemail.focus();
-				theform.retypeemail.select();
-				return false;
-			}			
-			
+									
 			else if(theform.password1.value == "")
 			{
 				alert("Please enter Password");
 				theform.password1.focus();
 				return false;
 			}
-	
-			else if(theform.password2.value == "")
-			{
-				alert("Please Retype Password");
-				theform.password2.focus();
-				return false;
-			}
-			
-			else if(theform.password2.value != theform.password1.value)
-			{
-				alert("Password Mismatch! Please Retype Correct Password");
-				theform.password2.focus();
-				theform.password2.select();
-				return false;
-			}
-			
+				
 			else if(theform.gender[1].checked == false && theform.gender[0].checked == false)
 			{
 				alert("Please select gender");
@@ -101,27 +69,32 @@
 				return false;
 			}
 			
-			else if(theform.community.options[theform.community.selectedIndex].value == "")
+			else if(theform.caste.options[theform.caste.selectedIndex].value == "")
 			{
-				alert("Please select your Religion/Community");
-				theform.community.focus();
+				alert("Please select your sub caste");
+				theform.caste.focus();
 				return false;
 			}
 			
 			else if(theform.countryofresidence.options[theform.countryofresidence.selectedIndex].value == "")
 			{
-				alert("Please select your Country of Residence");
+				alert("Please select your Country");
 				theform.countryofresidence.focus();
 				return false;
 			}
-			
+			else if(theform.captcha.value == "")
+			{
+				alert("Please enter verification text");
+				theform.captcha.focus();
+				return false;
+			}
 			else if(theform.confirm_policy.checked == false)
 			{
 				alert("You need to be agree with our privacy policy and terms and conditions");
 				theform.confirm_policy.focus();
 				return false;
 			}
-
+		
 			
 			return true;
 		}
