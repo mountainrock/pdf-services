@@ -10,7 +10,7 @@
       var $iSpacing;
       var $sCode;
 
-      function SecurityImage($iWidth = 100, $iHeight = 40, $iNumChars = 2, $iNumLines = 10) {
+      function SecurityImage($iWidth = 140, $iHeight = 80, $iNumChars = 4, $iNumLines = 30) {
          // get parameters
          $this->iWidth = $iWidth;
          $this->iHeight = $iHeight;
@@ -31,7 +31,7 @@
          for ($i = 0; $i < $this->iNumLines; $i++) {
             $iRandColour = rand(150, 200);
             $iLineColour = imagecolorallocate($this->oImage, $iRandColour, $iRandColour, $iRandColour);
-            imageline($this->oImage, rand(0, $this->iWidth), rand(0, $this->iHeight), rand(0, $this->iWidth), rand(0, $this->iHeight), $iLineColour);
+            imageline($this->oImage, rand(-10, $this->iWidth), rand(0, $this->iHeight), rand(0, $this->iWidth), rand(0, $this->iHeight), $iLineColour);
          }
       }
 
@@ -75,7 +75,7 @@
             $iCurrentFont = rand(8, 9);
 
             // select random greyscale colour
-            $iRandColour = rand(1, 2);
+            $iRandColour = rand(1, 3);
             $iTextColour = imagecolorallocate($this->oImage, $iRandColour, $iRandColour, $iRandColour);
 
             // write text to image

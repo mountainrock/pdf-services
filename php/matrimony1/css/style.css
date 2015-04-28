@@ -70,7 +70,7 @@ h1 {font-weight: normal;		font-size: 14px;			color: #333333;			font-style: norma
 h2 {font-weight: normal;			font-size: 18px;			color: #333333;			font-style: normal;			font-family: arial;			text-decoration: none;		margin: 0;}
 h3 {font-weight: bold;			font-size: 12px;			color: #333333;			font-style: normal;			font-family: arial;					text-decoration: none;		margin: 0;}
 
-td {font-weight: normal;		font-size: 12px;			color: #CD6060;			font-style: normal;			font-family: arial;					text-decoration: none;}
+td {font-weight: normal;		font-size: 12px;			color: #CD6060;			font-style: normal;			font-family: arial;					text-decoration: none; }
 
 .smallgreylink					{font-weight: normal;		font-size: 12px;			color: #333333;			font-style: normal;			font-family: ms sans serif;			text-decoration: none;}
 a.smallgreylink:link			{font-weight: normal;		font-size: 12px;			color: #333333;			font-style: normal;			font-family: ms sans serif;			text-decoration: none;}
@@ -125,3 +125,12 @@ a.smalldgray:hover	{color: #003399; text-decoration: underline;}
 form		{margin: 0px;}
 .xlarge		{font: bold 24px Tahoma; color: #C2C2C2;}
 .darkgray	{color: #666666;}
+
+.bztable_02{
+font-weight: normal;
+font-size: 12px;
+color: #1D24BF;
+font-style: normal;
+font-family: arial;
+text-decoration: none;
+}

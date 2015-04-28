@@ -1,7 +1,6 @@
 /* DEFAULTS ST */
 body			{margin: 0px; 
-font: 12px;
-font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+font: normal 12px lucida grande,San Serif; 
 background-color: #ffffff;
 background:none repeat scroll 0 0 #FFFFFF;
 }
@@ -9,23 +8,23 @@ background:none repeat scroll 0 0 #FFFFFF;
 .orangeText{ color:#FFB95F;}
 fieldset{
 	margin: 10px; 
-	border: 1px solid #FCE2AF;
+	border: 1px solid #F5B943;
 }
 textarea{
-border: 1px solid #FCE2AF;
+border: 1px solid #F5B943;
 }
 input[type="text"],input[type="password"],select {
-	border: 1px solid #FCE2AF;
+	border: 1px solid #F5B943;
 	height:18px;
 }
 hr{
- border: 0.5px solid #FCE2AF;
+ border: 0.5px solid #F5B943;
 }
 
 form			{margin: 0px;}
 input,
 select,
-textarea		{font: normal 12px Myriad Set Pro; color: #333333;}
+textarea		{font: normal 11px Tahoma; color: #333333;}
 
 a:link, a:visited {color: #0066CC; text-decoration: none;}
 a:hover {color: #003399; text-decoration: underline;}
@@ -37,21 +36,21 @@ a.img:link, a.img:visited, a.img:hover {background: none; padding: 0px; border: 
 
 /* DEFAULTS EN */
 
-.xsmall		{font: normal 10px Myriad Set Pro; color: #999999;}
+.xsmall		{font: normal 10px Tahoma; color: #999999;}
 .medium		{font: normal 12px Arial; color: #999999; line-height: 16px;}
-.smallcnt	{font: normal 11px; color: #333333;}
-.medMyriad Set Pro	{font: normal 11px Myriad Set Pro;}
+.smallcnt	{font: normal 11px Tahoma; color: #333333;}
+.medTahoma	{font: normal 11px Tahoma;}
 
 #memLogin {margin-top: 5px; background: #EDEDDE;}
 .noborder {text-decoration: none;}
 
-.title {font: normal 16px Arial, Myriad Set Pro; color: #FF6600;}
+.title {font: normal 16px Arial, Tahoma; color: #FF6600;}
 
-.punchline {font: bold 13px Myriad Set Pro; color: #767676;  margin: 0px;} /* below logo */
+.punchline {font: bold 13px Tahoma; color: #767676;  margin: 0px;} /* below logo */
 
 .landingHd {}
 
-h3 {font: bold 15px Myriad Set Pro; padding: 12 0px; margin: 0px;}
+h3 {font: bold 15px tahoma; padding: 12 0px; margin: 0px;}
 
 /* Floating */
 .left {float: left;}
@@ -78,11 +77,11 @@ h3 {font: bold 15px Myriad Set Pro; padding: 12 0px; margin: 0px;}
 a.lightgray:link, a.lightgray:visited {color: #CCCCCC; text-decoration: none;}
 a.lightgray:hover {color: #8E8C8C; text-decoration: underline;}
 
-.grayb {font: bold 12px Myriad Set Pro; color: #999999;}
+.grayb {font: bold 12px tahoma; color: #999999;}
 a.grayb:link, a.grayb:visited {color: #999999;}
 a.grayb:hover {color: #999999; text-decoration: none;}
 
-.greenb {font: bold 12px Myriad Set Pro; color: #99CC00;}
+.greenb {font: bold 12px tahoma; color: #99CC00;}
 #Religion a.greenb:link, #Religion a.greenb:visited {color: #99CC00;}
 #Religion a.greenb:hover {color: #99CC00; text-decoration: none;}
 
@@ -125,7 +124,7 @@ a.lgray:hover {color: #666666; text-decoration: underline;}
 #six{width: 117px; height: 31px; float: left;}
 
 
-.titleCreamBg {color: #7B7B7B; font: bold 12px Myriad Set Pro; line-height: 24px; background: #F8F8EB;}
+.titleCreamBg {color: #7B7B7B; font: bold 12px tahoma; line-height: 24px; background: #F8F8EB;}
 
 .dottedline {line-height: 20px;}
 

@@ -3,7 +3,7 @@ body			{margin: 0px; font: normal 12px Arial;}
 form			{margin: 0px;}
 input,
 select,
-textarea		{font: normal 12px Myriad Set Pro; color: #333333;}
+textarea		{font: normal 11px Tahoma; color: #333333;}
 
 a:link, a:visited {color: #0066CC; text-decoration: none;}
 a:hover {color: #003399; text-decoration: underline;}
@@ -14,24 +14,24 @@ a.img:link, a.img:visited, a.img:hover {background: none; padding: 0px; border: 
 
 /* DEFAULTS EN */
 
-.xsmall		{font-size:  10px ; color: #999999;}
-.medium		{font-size: normal 12px Arial; color: #999999; line-height: 16px;}
-.smallcnt	{font-size:  11px; color: #333333;}
-.large		{font-size:  12px ; line-height: 14px;}
+.xsmall		{font: normal 10px Tahoma; color: #999999;}
+.medium		{font: normal 12px Arial; color: #999999; line-height: 16px;}
+.smallcnt	{font: normal 11px Tahoma; color: #333333;}
+.large		{font: normal 12px Tahoma; line-height: 14px;}
 
 
-.grayb {font: bold 12px Myriad Set Pro; color: #999999;}
-.greenb {font: bold 12px Myriad Set Pro; color: #99CC00;}
+.grayb {font: bold 12px tahoma; color: #999999;}
+.greenb {font: bold 12px tahoma; color: #99CC00;}
 
 .noborder {text-decoration: none;}
 
-.title {font: normal 16px Arial, Myriad Set Pro; color: #FF6600;}
+.title {font: normal 16px Arial, Tahoma; color: #FF6600;}
 
-.punchline {font: bold 13px Myriad Set Pro; color: #767676;  margin: 0px;} /* below logo */
+.punchline {font: bold 13px Tahoma; color: #767676;  margin: 0px;} /* below logo */
 
 .landingHd {}
 
-h3 {font: bold 15px Myriad Set Pro; padding: 12 0px; margin: 0px;}
+h3 {font: bold 15px tahoma; padding: 12 0px; margin: 0px;}
 
 /* Floating */
 .left {float: left;}
@@ -82,8 +82,8 @@ a.lgray:hover {color: #666666; text-decoration: underline;}
 
 
 
-.titleBrdr {color: #7B7B7B; font: bold 12px Myriad Set Pro; line-height: 24px;}
-.titleCreamBg {color: #7B7B7B; font: bold 12px Myriad Set Pro; line-height: 24px; background-color: #F8F8EB;}
+.titleBrdr {color: #7B7B7B; font: bold 12px tahoma; line-height: 24px;}
+.titleCreamBg {color: #7B7B7B; font: bold 12px tahoma; line-height: 24px; background-color: #F8F8EB;}
 .dottedline {line-height: 25px;}
 
 .sstories {color: #A1A1A1; line-height: 16px; margin: 15 0px;}
@@ -93,8 +93,8 @@ a.lgray:hover {color: #666666; text-decoration: underline;}
 
 
 
-.titleBrdr {color: #7B7B7B; font: bold 12px Myriad Set Pro;}
-.titleCreamBg {color: #7B7B7B; font: bold 12px Myriad Set Pro; line-height: 24px; background: #F8F8EB;}
+.titleBrdr {color: #7B7B7B; font: bold 12px tahoma;}
+.titleCreamBg {color: #7B7B7B; font: bold 12px tahoma; line-height: 24px; background: #F8F8EB;}
 .dottedline {line-height: 24px;}
 
 
