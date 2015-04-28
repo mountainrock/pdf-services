@@ -79,53 +79,7 @@ $row = @mysql_fetch_array($result);
 				</div>
 				<!-- The top link table ends here -->
 
-			<!-- The topbanner table start's here -->
-			<div style="width: 762px; background-color: rgb(255, 255, 255);">
-			<div style="border-top: 1px solid rgb(143, 167, 191); border-left: 1px solid rgb(143, 167, 191); border-right: 1px solid rgb(143, 167, 191);">
-
-
-
-
-				<!-- midlinks + services space -->
-					<br style="line-height: 1px;" clear="all">
-				<div>
-					<div style="border-top: 2px solid #990000; border-bottom: 12px solid #990000; background-color: #990000; text-align: left;">
-
-					</div>
-				</div>
-				<!-- The topbanner table end's here -->
-
-				<!-- The tab table start's here -->
-				<div style="margin: 0px; width: 100%;">
-					<div style="width: 180px; background-color: rgb(255, 255, 255); float: left;">
-						<div style="border-top: 2px solid rgb(0, 0, 0);">
-						<div style="padding: 6px 0pt 0pt 0px; width: 170px; " class="smallblack"><div><a href="logout.php" class="smallbluelink"><b>Logout</b></a> [<a href="my_profile.php" class="smallblackbold" title="<?PHP echo $_SESSION['LoginID']?>"><?PHP echo $_SESSION['LoginID']?></a>]<br>
-						<span style="line-height: 2px;"><br></span>
-</div>
-
-				</div>
-				</div>
-				</div>
-
-				<div style="width: 580px; background-color: rgb(255, 255, 255); float: right; text-align: left;">
-					<div style="border-top: 2px solid rgb(0, 0, 0); width: 7px; float: left;"></div>
-					<div style="width: 130px; float: left;border-top: 2px solid rgb(0, 0, 0);">					<br clear="all">
-				  </div>
-					<div style="width: 130px; float: left;border-top: 2px solid rgb(0, 0, 0);">					<br clear="all">
-				  </div>
-					<div style="width: 130px; float: left;border-top: 2px solid rgb(0, 0, 0);">					<br clear="all">
-				  </div>
-					<div style="border-top: 2px solid rgb(0, 0, 0); width: 30px; float: left;"></div>
-					<div style="width: 141px; float: left;border-top: 2px solid rgb(0, 0, 0);">
-					</div>
-					<div style="border-top: 2px solid rgb(0, 0, 0); width: 12px; float: right;"></div>
-				</div>
-				<br clear="all">
-				</div>
-
-			</div>
-			</div>
-			<!-- The topbanner table ends here -->
+			
 			</center>
 
 <div align="center">

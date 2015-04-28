@@ -14,10 +14,7 @@ $result = mysql_query($sql,$conn);
 
 		if (@mysql_num_rows($result)!=0){
 
-			$row = @mysql_fetch_array($result);
-			$_SESSION['UserID']=$row['UserID'];
-			$_SESSION['LoginID']=$row['LoginID'];
-
+			$row = @mysql_fetch_array($result);			
 			if($rowsettings['smtpstatus'] == 1)
 			{
 			require("phpmailer/class.phpmailer.php");
@@ -41,7 +38,7 @@ $result = mysql_query($sql,$conn);
 
 	$mail->Subject = "Your login Password";
 
-	$email_layout = "<br><br><img src='".$rowsettings['url']."/images/matrimonial-logo-sm.gif'><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br><br>Dear ". $row['LoginID'] . ",<br><br>Below is your login details to ".$rowsettings['ScriptName']."<br><br>Email Address: ". $row['EmailAddress'] . "<br>Password: ".$row['Password']."<br><br>please login to ".$rowsettings['url']." to check your message.";
+	$email_layout = "<br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br><br>Dear ". $row['Name'] . ",<br><br>Below is your login details to ".$rowsettings['ScriptName']."<br><br>Email Address: ". $row['EmailAddress'] . "<br>Password: ".$row['Password']."<br><br>please login to ".$rowsettings['url']." to check your message.";
 
 	$mail->Body = $email_layout;
 	$mail->Send();
@@ -50,7 +47,7 @@ $result = mysql_query($sql,$conn);
 	{
 	$to=$row['EmailAddress'];
 	$subject="Your login Password";
-	$email_layout = "<br><br><img src='".$rowsettings['url']."/images/matrimonial-logo-sm.gif'><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br><br>Dear ". $row['LoginID'] . ",<br><br>Below is your login details to ".$rowsettings['ScriptName']."<br><br>Email Address: ". $row['EmailAddress'] . "<br>Password: ".$row['Password']."<br><br>please login to ".$rowsettings['url']." to check your message.";
+	$email_layout = "<br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br><br>Dear ". $row['Name'] . ",<br><br>Below is your login details to ".$rowsettings['ScriptName']."<br><br>Email Address: ". $row['EmailAddress'] . "<br>Password: ".$row['Password']."<br><br>please login to ".$rowsettings['url']." to check your message.";
 	$description=$email_layout;
 	$headers  = "MIME-Version: 1.0\r\n";
 	$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";

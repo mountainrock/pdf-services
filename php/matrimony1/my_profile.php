@@ -40,7 +40,7 @@ $rowp = @mysql_fetch_array($resultpartner);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Gor Banjara matrimonial - My Profile</title>
+<title>Marry Banjara - My Profile</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
 </head>
@@ -116,7 +116,7 @@ $rowp = @mysql_fetch_array($resultpartner);
 	<td width="100%" height="20" colspan="2" class="largeblackbold">Name :  <?PHP echo $row['Name'] ?></td>
 </tr>
 <tr align="left" valign="top">
-	<td width="100%" height="20" colspan="2" class="largeblackbold">Profile ID : <?PHP echo $row['LoginID'] ?></td>
+	<td width="100%" height="20" colspan="2" class="largeblackbold">Profile ID : <?PHP echo $row['UserID'] ?></td>
 </tr>
 
 <tr>
@@ -363,7 +363,7 @@ About Myself</td>
 <td align="left" valign="top" class="mediumblack">:</td>
 <td align="left" valign="top" class="mediumblack"><div id="star"></div>
 <script language="javascript">
-//document.getElementById('star').innerHTML=starsigns[StarSign(<?PHP echo $row['BirthDate']?>,<?PHP echo $row['BirthMonth']?>)];
+document.getElementById('star').innerHTML=starsigns[StarSign(<?PHP echo $row['BirthDate']?>,<?PHP echo $row['BirthMonth']?>)];
 </script></td>
 <td class="mediumblack"><br></td>
 </tr>
@@ -470,44 +470,16 @@ if ($row['Astroprofile']!="")
 
 <tr>
 <td class="mediumblack"><br></td>
-<td align="left" valign="top" class="mediumblack">Country of Birth</td>
+<td align="left" valign="top" class="mediumblack">Country of Residence</td>
 <td align="left" valign="top" class="mediumblack">:</td>
 <td align="left" valign="top" class="mediumblack"><?PHP
-$sql2 = "SELECT Country FROM user_profile, countries WHERE user_profile.CountryOfBirth=countries.CountryID";
+$sql2 = "SELECT Country FROM users, countries WHERE users.CountryID=countries.CountryID and users.UserID=".$_SESSION['UserID'];
 $result2 = mysql_query($sql2,$conn);
 $row2 = @mysql_fetch_array($result2);
 echo $row2['Country']?></td>
 <td class="mediumblack"><br></td>
 </tr>
-<tr>
-<td class="mediumblack"><br></td>
-<td align="left" valign="top" class="mediumblack">Grew up in</td>
-<td align="left" valign="top" class="mediumblack">:</td>
-<td align="left" valign="top" class="mediumblack">
-<?PHP
-$grewupin1 = explode("|",$row['GrewUpIn']);
-$a=0;
-for($x=0; $x < count($grewupin1); $x++)
-{
-	if($grewupin1[$x]!="")
-	{
-		$sqlCountry = "SELECT * FROM countries where CountryID=".$grewupin1[$x];
-		$resultCountry = mysql_query($sqlCountry, $conn);
-		$rowCountry = @mysql_fetch_array($resultCountry);
-		if($a==0)
-		{
-			echo $rowCountry['Country'];
-			$a=1;
-		}
-		else
-		{
-			echo ", ".$rowCountry['Country'];
-		}
-	}
-}
-?></td>
-<td class="mediumblack"><br></td>
-</tr>
+
 <tr>
 <td class="mediumblack"><br></td>
 <td align="left" valign="top" class="mediumblack">Personal Values</td>
@@ -515,13 +487,7 @@ for($x=0; $x < count($grewupin1); $x++)
 <td align="left" valign="top" class="mediumblack"><?PHP echo $row['PersonalValues']?></td>
 <td class="mediumblack"><br></td>
 </tr>
-<tr>
-<td class="mediumblack"><br></td>
-<td align="left" valign="top" class="mediumblack">Can speak</td>
-<td align="left" valign="top" class="mediumblack">:</td>
-<td align="left" valign="top" class="mediumblack"><?PHP echo str_replace("|",", ",$row['SpokenLanguages'])?></td>
-<td class="mediumblack"><br></td>
-</tr>
+
 <tr>
 <td colspan="5" bgcolor="#8fa7bf" height="1"><spacer type="block" height="1" width="1"></td>
 </tr>
@@ -947,36 +913,8 @@ echo $gender;
 <td bgcolor="#8fa7bf" height="1" width="150"><spacer type="block" height="1" width="150"></td>
 <td bgcolor="#8fa7bf" height="1" width="8"><spacer type="block" height="1" width="8"></td>
 </tr>
-<?PHP
-$arrRel = explode("|",$rowp['Religion']);
-for($x=0; $x < count($arrRel); $x++)
-{
-$sql = "SELECT Religion FROM religion WHERE ReligionID=".$arrRel[$x];
-$resultrel = mysql_query($sql,$conn);
-$rowrel = @mysql_fetch_array($resultrel);
-if($x==0)
-{
-$religion = $rowrel['Religion'];
-}
-else
-{
-$religion .= ", ".$rowrel['Religion'];
-}
-}
-if($religion=="")
-{
-$religion = "Doesn't Matter";
-}
-?>
+
 <tr>
-<td class="mediumblack"><br></td>
-<td align="left" valign="top" class="mediumblack">Religion</td>
-<td align="left" valign="top" class="mediumblack">:</td>
-<td align="left" valign="top" class="mediumblack"><?PHP echo $religion?></td>
-<td class="mediumblack"><br></td>
-</tr>
-<tr>
-</tr><tr>
 <td class="mediumblack"><br></td>
 <td align="left" valign="top" class="mediumblack">Mother Tongue</td>
 <td align="left" valign="top" class="mediumblack">:</td>

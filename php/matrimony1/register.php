@@ -39,9 +39,9 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 			} else {
 				$ip = $_SERVER['REMOTE_ADDR'];
 			}
-			$insert = "insert into users(LoginID,Name, EmailAddress, Password, Gender, BirthDate, BirthMonth, BirthYear, Caste, CountryID, ConfirmationCode, AddedDate, dobstatus,ipAddress)
+			$insert = "insert into users(Name, EmailAddress, Password, Gender, BirthDate, BirthMonth, BirthYear, Caste, CountryID, ConfirmationCode, AddedDate, dobstatus,ipAddress)
 			VALUES (
-				'".mysql_escape_string($_POST['email'])."',
+				
 				'".mysql_escape_string($_POST['name'])."',
 				'".mysql_escape_string($_POST['email'])."',
 				'".mysql_escape_string($_POST['password1'])."',
@@ -54,16 +54,20 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 				'".md5(mysql_escape_string($_POST['email']))."',
 				NOW(),
 				'".$dobstatus."',
-				$ip
+				'".$ip."'
 			)";
 
 
 			$resultt = mysql_query($insert);
+			
+			if ($resultt == false) {
+			  die("Failed to save");
+			}
 			//email
 			if($rowsettings['smtpstatus'] == 1)
 			{
 
-				$email_layout = "<br><br><img src='".$rowsettings['url']."/images/matrimonial-logo-sm.gif'><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br><br>Dear Member,<br><br>Your Registration with ".$rowsettings['ScriptName']." has been successfully completed, but you need to confirm your registration first by clicking the below link. If you cannot access the confirmation page by clicking at this link, then kindly copy paste this link into your browser's address bar and press enter. After you will confirm your registration, You will be able to create your profile.<br><br><br>click below to confirm your registration:<br><br><a href='".$rowsettings['url']."/registration_confirmation.php?confirm=".md5(mysql_escape_string($_POST['email']))."'>".$rowsettings['url']."/registration_confirmation.php?confirm=".md5(mysql_escape_string($_POST['email']))."</a>";
+				$email_layout = "<table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br><br>Dear Member,<br><br>Your Registration with ".$rowsettings['ScriptName']." has been successfully completed, but you need to confirm your registration first by clicking the below link. If you cannot access the confirmation page by clicking at this link, then kindly copy paste this link into your browser's address bar and press enter. After you will confirm your registration, You will be able to create your profile.<br><br><br>click below to confirm your registration:<br><br><a href='".$rowsettings['url']."/registration_confirmation.php?confirm=".md5(mysql_escape_string($_POST['email']))."'>".$rowsettings['url']."/registration_confirmation.php?confirm=".md5(mysql_escape_string($_POST['email']))."</a>";
 
 
 				require("phpmailer/class.phpmailer.php");
@@ -93,15 +97,21 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 				else
 				{
 				$to=$_POST['email'];
-				$email_layout = "<br><br><img src='".$rowsettings['url']."/images/matrimonial-logo-sm.gif'><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br><br>Dear Member,<br><br>Your Registration with ".$rowsettings['ScriptName']." has been successfully completed, but you need to confirm your registration first by clicking the below link. If you cannot access the confirmation page by clicking at this link, then kindly copy paste this link into your browser's address bar and press enter. After you will confirm your registration, You will be able to create your profile.<br><br><br>click below to confirm your registration:<br><br><a href='".$rowsettings['url']."/registration_confirmation.php?confirm=".md5(mysql_escape_string($_POST['email']))."'>".$rowsettings['url']."/registration_confirmation.php?confirm=".md5(mysql_escape_string($_POST['email']))."</a>";
+			        $email_layout= '<font style="font-size:26pt;"><span style="color:#FF9D3D">GorBanjara </span><span style="color:#FC9E93">Matrimonial</span></font>';
+				$email_layout .= "<br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br><br>Dear Member,<br><br>Your Registration with ".$rowsettings['ScriptName']." has been successfully completed, but you need to confirm your registration first by clicking the below link. If you cannot access the confirmation page by clicking at this link, then kindly copy paste this link into your browser's address bar and press enter. After you will confirm your registration, You will be able to create your profile.<br><br><br>click below to confirm your registration:<br><br><a href='".$rowsettings['url']."/registration_confirmation.php?confirm=".md5(mysql_escape_string($_POST['email']))."'>".$rowsettings['url']."/registration_confirmation.php?confirm=".md5(mysql_escape_string($_POST['email']))."</a>";
 				$subject="Action Required to Confirm Registration";
 				$description=$email_layout;
-				$headers  = "MIME-Version: 1.0\r\n";
-				$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-				$headers .= "From: ".$rowsettings['ScriptName']." <".$rowsettings['AdminEmail'].">\r\n";
+				$emailheaders  = "MIME-Version: 1.0\r\n";
+				$emailheaders  .= "Content-type: text/html; charset=iso-8859-1\r\n";
+				$emailheaders  .= "From: ".$rowsettings['ScriptName']." <".$rowsettings['AdminEmail'].">\r\n";				
 
-				$res=@mail($to,$subject,$description,$headers);
+				$res =@mail($to,$subject,$description,$emailheaders);
+				if($res == false){
+ 				   echo "Failed to send email to ".$to;
 				}
+
+	
+      			}
 
 				header("Location: register2.php?email=".mysql_escape_string($_POST['email']));
 			}
@@ -110,7 +120,7 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Gor Banjara matrimonial - Register</title>
+<title>Marry Banjara - Register</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/register.css">
@@ -288,7 +298,7 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 
 		<tr>
 			<td><label for="male">Gender</label></td>
-			<td><input tabindex="7" name="gender" id="male" value="Male" onfocus="toggleHint('show', this.name)" onblur="validate_gender()" onclick="document.getElementById('errmsg_gender').innerHTML=''" type="radio">
+			<td><input tabindex="7" name="gender" id="male" value="Male" onfocus="toggleHint('show', this.name)" onblur="validate_gender()" onclick="document.getElementById('errmsg_gender').innerHTML=''" type="radio" <?php if($_REQUEST['gender'] =='Male') echo "checked='checked'";?> >
 		<!-- HINT STARTS HERE -->
 		<span class="hint" id="hint_gender">
 		<div>
@@ -300,14 +310,56 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 		</span>
 		<!-- HINT ENDS HERE -->
 	 <label class="smallblack l2" for="male">Male &nbsp;</label>
-			<input tabindex="7" name="gender" id="female" value="Female" onfocus="toggleHint('show', this.name)" onblur="validate_gender()" onclick="document.getElementById('errmsg_gender').innerHTML=''" type="radio"> <label class="smallblack l2" for="female">Female</label><br>
+			<input tabindex="7" name="gender" id="female" value="Female" onfocus="toggleHint('show', this.name)" onblur="validate_gender()" onclick="document.getElementById('errmsg_gender').innerHTML=''" type="radio"> <label class="smallblack l2" for="female" <?php if($_REQUEST['gender'] =='Female') echo "checked='checked'";?>>Female</label><br>
 			<span id="errmsg_gender" class="error"></span></td>
 		</tr>
 
 		<tr>
 			<td style="cursor: pointer;" onclick="focus_field('day');"><label>Date of Birth</label></td>
 			<td class="smallgrey">
-			<select tabindex="8" id="day" name="day" class="field_dob" onfocus="toggleHint('show', 'dateofbirth')" onblur="validate_dateofbirth(this.name);"><option selected="selected" value="">Day</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>&nbsp; <select tabindex="9" name="month" class="field_dob" onfocus="toggleHint('show', 'dateofbirth')" onblur="validate_dateofbirth(this.name);"><option selected="selected" value="">Month</option><option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option><option value="04">Apr</option><option value="05">May</option><option value="06">Jun</option><option value="07">Jul</option><option value="08">Aug</option><option value="09">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select>&nbsp; <select tabindex="10" name="year" class="field_dob" onfocus="toggleHint('show', 'dateofbirth')" onblur="validate_dateofbirth(this.name);"><option selected="selected" value="">Year</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option><option value="1959">1959</option><option value="1958">1958</option><option value="1957">1957</option><option value="1956">1956</option><option value="1955">1955</option><option value="1954">1954</option><option value="1953">1953</option><option value="1952">1952</option><option value="1951">1951</option><option value="1950">1950</option><option value="1949">1949</option><option value="1948">1948</option><option value="1947">1947</option></select>
+			<select tabindex="8" id="day" name="day" class="field_dob" onfocus="toggleHint('show', 'dateofbirth')" onblur="validate_dateofbirth(this.name);">			
+				<option selected="selected" value="">Day</option>
+				<?php			
+				for ($x = 1; $x <= 31; $x++) {
+				 if($_REQUEST['day'] ==sprintf('%02d', $x)){
+					 echo "<option value='".sprintf('%02d', $x)."' selected='selected'>".sprintf('%02d', $x)."</option>";
+				 } else{
+				        echo "<option value='".sprintf('%02d', $x)."'>".sprintf('%02d', $x)."</option>";
+				 }
+				 
+				} 
+				?>						
+			</select>&nbsp; 
+			
+			<select tabindex="9" name="month" class="field_dob" onfocus="toggleHint('show', 'dateofbirth')" onblur="validate_dateofbirth(this.name);">
+			
+			<option selected="selected" value="">Month</option>
+			<?php
+			$months= array("January","February","March","April","May","June","July","August","September","October","November","December");
+			for($x = 0; $x <= count($months); $x++) {
+				if($_REQUEST['month'] ==sprintf('%02d', $x)){
+			   		 echo "<option value='".sprintf('%02d', $x)."' selected='selected'>".$months[$x]."</option>" ;
+				}else{
+			  		  echo "<option value='".sprintf('%02d', $x)."'>".$months[$x]."</option>" ;
+			  	}
+			}	
+			?>	
+			</select>&nbsp; 
+		
+		<select tabindex="10" name="year" class="field_dob" onfocus="toggleHint('show', 'dateofbirth')" onblur="validate_dateofbirth(this.name);">
+			<option selected="selected" value="">Year</option>
+			<?php
+			$thisYear = date("Y"); 
+			for ($x = $thisYear-65; $x <= $thisYear-18; $x++) {
+			 if($_REQUEST['year'] ==$x){
+				echo "<option value='".$x."' selected='selected'>".$x."</option>";
+			 } else{
+			        echo "<option value='".$x."' >".$x."</option>";
+			 }
+			  
+			} 
+			?>
+		</select>
 		<!-- HINT STARTS HERE -->
 		<span class="hint" id="hint_dateofbirth">
 		<div>
@@ -325,7 +377,7 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 
 		<tr>
 			<td style="cursor: pointer;" onclick="focus_field('countryofresidence');">Country of Residence</td>
-			<td><select tabindex="12" name="countryofresidence" id="countryofresidence" class="field" onblur="validate_countryofresidence();"><option value="">Select</option>
+			<td><select tabindex="12" name="countryofresidence" id="countryofresidence"  onblur="validate_countryofresidence();"><option value="">Select</option>
 			<?php
 				$sqlCountry = "SELECT * FROM countries order by CountryID";
 				$resultCountry = mysql_query($sqlCountry, $conn);
@@ -335,7 +387,7 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 						?>
 						<option value="<?php echo $rowCountry['CountryID']?>"
 						<?php
-						if($_REQUEST['CountryID'] == $rowCountry['CountryID'])
+						if($_REQUEST['countryofresidence'] == $rowCountry['CountryID'])
 							echo "selected";
 						?>
 						><?php echo $rowCountry['Country']?></option>
@@ -352,10 +404,10 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 					<td ><label>Verification </label></td>
 					<td>
 					<div>
-					<input name="captcha" id="captcha" size="5"/>
+					<input name="captcha" id="captcha" size="5" type="text"/>
 					<img src="captcha/security-image.php" style="position:absolute"/>
 					</div>
-					<span class="mediumred" style="font-size:9px">Enter text in image for human verification</span</td>
+					<span class="mediumred" style="font-size:10px">Enter text in image for human verification</span</td>
 		</tr>
 		</tbody></table>
 		<!-- FORM TABLE EN -->

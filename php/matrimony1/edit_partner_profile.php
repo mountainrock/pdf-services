@@ -389,7 +389,7 @@ $row = @mysql_fetch_array($result);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Gor Banjara matrimonial - Edit Partner Profile</title>
+<title>Marry Banjara - Edit Partner Profile</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="css/style.css">
 <script language="javascript" src="js/ajax-v2-inc-mod.js"></script>
@@ -470,10 +470,7 @@ this page.</span> </noscript>
 	<div class="largewhitebold bluepatch" style="margin-top: 10px; color:#990000;"><b>Partner - Basic Info</b></div>
 
 	<table  border="0" cellpadding="6" cellspacing="0">
-	<tbody><tr valign="top">
-		<td class="td1" style="width:100px; "><b>Gender</b></td>
-		<td class="td2 smallblack"><?PHP echo $row['Gender']?> <input name="gender" value="<?PHP echo $gender?>" type="hidden"></td>
-	</tr>
+	<tbody>
 
 	<tr valign="top">
 		<td><b>Age in years</b></td>
@@ -711,63 +708,7 @@ for($x=0; $x < count($maritalstatus); $x++)
 			To remove from list - click on item on the right and click <b>'Remove'</b>.</div>
 		</td>
 	</tr>
-	<tr valign="top">
-		<td class="td1"><b>Religion</b></td>
-		<td class="td2">
-			<table border="0" cellpadding="0" cellspacing="0">
-			<tbody><tr>
-				<td>
-				<select multiple="multiple" name="community_fromarray[]" size="5" class="formselect" style="width: 175px;">
-				<?PHP
-				$sqlCountry = "SELECT * FROM religion order by ReligionID";
-				$resultCountry = mysql_query($sqlCountry, $conn);
-				if (@mysql_num_rows($resultCountry)!=0){
-					while($rowCountry = mysql_fetch_array($resultCountry))
-					{
-						?>
-						<option value="<?PHP echo $rowCountry['ReligionID']?>">
-						<?PHP echo $rowCountry['Religion']?>
-						</option>
-						<?
-					}
-				}
-				?>
-
-				</select>
-				</td>
-				<td align="center">
-				<img src="images/add.gif" value="Add" onclick="if(copytolist(document.frm_main.elements['community_fromarray[]'], document.frm_main.elements['communityarray[]'])){ display_dropdown_caste('smart_search', '', document.frm_main.gender.value); }"><br>
-				<img src="images/remove.gif" value="Remove" onclick="if(copytolist(document.frm_main.elements['communityarray[]'], document.frm_main.elements['community_fromarray[]'])) { display_dropdown_caste('smart_search', '', document.frm_main.gender.value); }"><br>
-				</td>
-				<td>
-				<select multiple="multiple" name="communityarray[]" size="5" class="formselect" style="width: 175px;">
-				<?PHP
-				$selectgrewupin="";
-				$grewupin1 = explode("|",$row['Religion']);
-				for($x=0; $x < count($grewupin1); $x++)
-				{
-				$sqlCountry = "SELECT * FROM religion where ReligionID=".$grewupin1[$x];
-				$resultCountry = mysql_query($sqlCountry, $conn);
-				if (@mysql_num_rows($resultCountry)!=0){
-					$rowCountry=@mysql_fetch_array($resultCountry);
-					$selectgrewupin .= '<option value="'.$rowCountry['ReligionID'].'">'.$rowCountry['Religion'].'</option>';
-				}
-				}
-				if($selectgrewupin=="")
-				{
-					echo '<option value="">Doesn\'t Matter</option>';
-				}
-				else
-				{
-				echo $selectgrewupin;
-				}
-				?>
-				</select>
-				</td>
-			</tr>
-			</tbody></table>
-		</td>
-	</tr>
+	
 	<tr id="show_hide_mothertongue" valign="top">
 		<td><b>Mother Tongue</b></td>
 		<td>
@@ -781,7 +722,7 @@ for($x=0; $x < count($maritalstatus); $x++)
 				<img src="images/remove.gif" value="Remove" onclick="if(copytolist(document.frm_main.elements['mothertonguearray[]'], document.frm_main.elements['mothertongue_fromarray[]'])){ display_dropdown_caste('smart_search', '', document.frm_main.gender.value); }"><br>
 				</td>
 				<td>
-					<select multiple="multiple" name="mothertonguearray[]" style="width: 175px;" class="formselect" size="5">
+					<select multiple="multiple" name="mothertonguearray[]" style="width: 175px;height:45px" class="formselect" size="5">
 					<?PHP
 				$selectgrewupin="";
 				$grewupin1 = explode("|",$row['MotherTongue']);
@@ -887,7 +828,7 @@ for($x=0; $x < count($maritalstatus); $x++)
 				<img src="images/remove.gif" value="Remove" onclick="copytolist(document.frm_main.elements['education_level_array[]'],document.frm_main.elements['education_level_fromarray[]']);"><br>
 				</td>
 				<td><br>
-					<select multiple="multiple" name="education_level_array[]" size="5" class="formselect" style="width: 175px;">
+					<select multiple="multiple" name="education_level_array[]" size="5" class="formselect" style="width: 175px;height:45px">
 
 					<?PHP
 				$selectgrewupin="";

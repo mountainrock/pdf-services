@@ -18,20 +18,9 @@
 <a name="Matrimonial"></a>
 <center>
 
-		<div class="width">
-
-
-		</div>
-        <br style="line-height: 0px;" clear="all">
-
-
-		<div class="width">
-		    <br/>
-			<div class="left tleft">
-			<font style="font-size:26pt;"><span style="color:#FF9D3D">GorBanjara </span><span style="color:#FC9E93">Matrimonial</span</font>
-			<br>
-           <div class="left tleft" style="padding-left:30px;font-size:10pt"> <span style="color: #A8EEAE;"><?php echo $kSiteTitle; ?>	</span></span><br><br></div>
-            </div>
+       
+<?php include("sections/site-title.php"); ?>
+		
 	</div>
 
 
@@ -60,6 +49,7 @@ if($_SESSION['UserID']!="")
 <table>
 <tr>
 	<td><a href="index.php" title="My Account" style="color:#F1F1F1;border-right:1px solid #FFF;"><strong>Home&nbsp;</strong></a> </td>
+	<td><a href="gothras.php" title="Gothras" style="color:#F1F1F1;border-right:1px solid #FFF;"><strong>Gothras&nbsp;</strong></a></td>
 	<td><a href="contactus.php" title="Log Out" style="color:#F1F1F1;"><strong>Contact Us&nbsp;</strong></a></td>
 	<td width="300">&nbsp;</td>
 	<td><a href="myaccount.php" title="My Account" style="color:#F1F1F1;border-right:1px solid #FFF;"><strong>My Account&nbsp;</strong></a> </td>
@@ -72,29 +62,11 @@ if($_SESSION['UserID']!="")
 else
 {
 ?>
+<?php include("sections/default-menu.php"); ?>
 
 
 
 
-			<form method="post" action="login.php" name="loginpage" autocomplete="off" style="margin: 4px 0pt 0pt 0px;">
-<table>
-<tr>
-	<td><b><a href="index.php" style="color:#F1F1F1;border-right:1px solid #FFF;">Home&nbsp;</a></b></td>
-	<td><b><a href="aboutus.php" style="color:#F1F1F1;border-right:1px solid #FFF;">About Us&nbsp;</a></b></td>
-	<td><b><a href="contactus.php" style="color:#F1F1F1;">Contact Us&nbsp;</a>	</b> </td>
-
-    <td><b style="color:#F1F1F1;padding-left:45pt">Login</b></td>
-    <td><input name="login" value="Email" style="color:#CDCDCD" onfocus="if(this.value=='Email') this.value='';" onblur="if(this.value=='') this.value='Email';" size="25" type="text">&nbsp; &nbsp;</td>
-	<td><input name="password" value="*****" style="color:#CDCDCD" onfocus="if(this.value=='*****') this.value='';" onblur="if(this.value=='') this.value='*****';" size="14" type="password">&nbsp;</td>
-	<td><input style="border:none" src="images/go.gif" title="Login" align="top" border="0" type="image">
-	    <input name="homepage" value="Y" type="hidden"><input name="continue" value="true" type="hidden"></td>
-    <td><a href="register.php" style="color:#F1F1F1;font-size:12px" >Register</a></td>
-	<td><a href="forget_password.php"  title="Forgot Password?" style="color:#F1F1F1;">Forgot Password?</a></td>
-
-</tr>
-</table>
-
-	</form>
 		<?php
 }
 ?>

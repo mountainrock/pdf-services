@@ -1,10 +1,10 @@
 TODO:
-1.cleanup sql scripts and organize
-2.remove unwanted data from scripts
-3. Improve main screen- title, search box (remove country), remove unwanted text in main page
-4. Fix search results
-
-5. Fix edit profile
-6. Fix paypal payment
-7. integration facebook and google plus login/register
-8. Fix email (on interest sned)
+socialauth integration
+------------------------
+1. gorbanjara.net/socialauth/index.php
+  change exec permission and open gorbanjara.net/socialauth/installation/index.php
+2. google API is  configured and works! Facebook also
+   TODO: configure yahoo
+3. Build social auth signin and register (follow /socialauth/signin.php )
+  Refer socialauth/Social/Adapter.php --> goToCallbackPage()  to update redirect after login url
+4. verify registration through socialauth works!

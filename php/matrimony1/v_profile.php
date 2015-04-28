@@ -31,7 +31,7 @@ $rowp = @mysql_fetch_array($resultpartner);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Gor Banjara matrimonial - <?PHP echo $row['LoginID'] ?>'s Profile</title>
+<title>Marry Banjara - <?PHP echo $row['LoginID'] ?>'s Profile</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/main.css">

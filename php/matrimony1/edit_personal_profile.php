@@ -12,11 +12,15 @@ $rowsettings = mysql_fetch_array($resultsettings);
 
 if($_POST['continue']=="true")
 {
-			$insert = "update user_profile set CreatedBy='".mysql_escape_string($_POST['relationship'])."', MaritalStatus='".mysql_escape_string($_POST['maritalstatus'])."', HaveChildren='".mysql_escape_string($_POST['havechildren'])."', Height='".mysql_escape_string($_POST['height'])."', BodyType='".mysql_escape_string($_POST['bodytype'])."', Complexion='".mysql_escape_string($_POST['complexion'])."', SpecialCases='".$_POST['specialcases']."', MotherTongue='".$_POST['mothertongue']."', Caste='".$_POST['caste']."', SubCaste='".$_POST['subcaste']."', Manglik='".$_POST['manglik']."', FamilyValues='".$_POST['familyvalues']."', Education='".$_POST['educationlevel']."', EducationIn='".$_POST['educationarea']."', Profession='".$_POST['occupation']."', Diet='".$_POST['diet']."', Smoke='".$_POST['smoke']."', Drink='".$_POST['drink']."', StateID=".$_POST['stateofresidence'].", CityID=".$_POST['nearest_city'].", ResidencyStatus='".$_POST['residencystatus']."', PhoneStatus='".$_POST['type']."', CountryCode='".$_POST['c_country_code']."', CountryCode2='".$_POST['country_code']."', AreaStdCode='".$_POST['std_code']."', PhoneNumber='".$_POST['contact_number']."', DisplayContactStatus='".$_POST['contact_details_dislay_status']."', AboutYourself='".$_POST['aboutyourself']."' where UserID=".$_SESSION['UserID'];
+			$insert = "update user_profile set CreatedBy='".mysql_escape_string($_POST['relationship'])."', MaritalStatus='".mysql_escape_string($_POST['maritalstatus'])."', HaveChildren='".mysql_escape_string($_POST['havechildren'])."', Height='".mysql_escape_string($_POST['height'])."', BodyType='".mysql_escape_string($_POST['bodytype'])."', Complexion='".mysql_escape_string($_POST['complexion'])."', SpecialCases='".$_POST['specialcases']."', MotherTongue='".$_POST['mothertongue']."', caste='".$_POST['caste']."', Manglik='".$_POST['manglik']."', FamilyValues='".$_POST['familyvalues']."', Education='".$_POST['educationlevel']."', EducationIn='".$_POST['educationarea']."', Profession='".$_POST['occupation']."', Diet='".$_POST['diet']."', Smoke='".$_POST['smoke']."', Drink='".$_POST['drink']."', StateID=".$_POST['stateofresidence'].", CityID=".$_POST['nearest_city'].", ResidencyStatus='".$_POST['residencystatus']."', PhoneStatus='".$_POST['type']."', CountryCode='".$_POST['c_country_code']."', CountryCode2='".$_POST['country_code']."', AreaStdCode='".$_POST['std_code']."', PhoneNumber='".$_POST['contact_number']."', DisplayContactStatus='".$_POST['contact_details_dislay_status']."', AboutYourself='".$_POST['aboutyourself']."' where UserID=".$_SESSION['UserID'];
 
 
 
 			$resultt = mysql_query($insert);
+			
+			if ($resultt == false) {
+			  die("Failed to save".$insert);
+			}
 $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['month']), mysql_escape_string($_POST['day']));
 
 if($_REQUEST['dobstatus']=="true")
@@ -28,21 +32,25 @@ else
 	$dobstatus = 0;
 }
 
-$insert = "update users set BirthDate='".mysql_escape_string($_POST['day'])."', BirthMonth='".mysql_escape_string($_POST['month'])."', BirthYear='".mysql_escape_string($_POST['year'])."', Age='".$age."', ReligionID=".$_REQUEST['religion'].", CountryID=".$_REQUEST['country'].", dobstatus=".$dobstatus." where UserID=".$_SESSION['UserID'];
+$insert = "update users set BirthDate='".mysql_escape_string($_POST['day'])."', BirthMonth='".mysql_escape_string($_POST['month'])."', BirthYear='".mysql_escape_string($_POST['year'])."',  CountryID=".$_REQUEST['country'].", dobstatus=".$dobstatus." where UserID=".$_SESSION['UserID'];
 
 $resultt = mysql_query($insert);
+
+			if ($resultt == false) {
+			  die("Failed to save DOB".$insert);
+			}
 
 	header("Location: my_profile.php");
 	exit();
 }
-$sql = "SELECT * FROM users, countries, user_profile, religion WHERE users.UserID=user_profile.UserID and users.CountryID=countries.CountryID and users.ReligionID=religion.ReligionID and users.UserID=".$_SESSION['UserID'];
+$sql = "SELECT * FROM users, countries, user_profile WHERE users.UserID=user_profile.UserID and users.CountryID=countries.CountryID  and users.UserID=".$_SESSION['UserID'];
 $result = mysql_query($sql,$conn);
 $row = @mysql_fetch_array($result);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Gor Banjara matrimonial - Edit Your Personal Profile</title>
+<title>Marry Banjara - Edit Your Personal Profile</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/editpersonalprofile.css">
@@ -158,23 +166,43 @@ $row = @mysql_fetch_array($result);
 				<td class="td1" style="cursor: pointer;" onclick="focus_field('day');" valign="top"><em>*</em><b>Date of Birth</b></td>
 				<td class="smallblack" valign="top">
 				<select name="day" id="day" class="field_filled1" style="width: 44px;">
-				<?PHP
-				$day='<option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>';
-				$day = str_replace('<option value="'.$row['BirthDate'].'"','<option value="'.$row['BirthDate'].'" selected', $day);
-				echo $day;
+				<option selected="selected" value="">Day</option>
+				<?php			
+				for ($x = 1; $x <= 31; $x++) {
+				 if($row['BirthDate'] ==sprintf('%02d', $x)){
+					 echo "<option value='".sprintf('%02d', $x)."' selected='selected'>".sprintf('%02d', $x)."</option>";
+				 } else{
+				        echo "<option value='".sprintf('%02d', $x)."'>".sprintf('%02d', $x)."</option>";
+				 }
+				 
+				} 
 				?>
 				</select>&nbsp; <select name="month" class="field_filled1" style="width: 50px;">
-				<?PHP
-				$month='<option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option><option value="04">Apr</option><option value="05">May</option><option value="06">Jun</option><option value="07">Jul</option><option value="08">Aug</option><option value="09">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>';
-				$month = str_replace('<option value="'.$row['BirthMonth'].'"','<option value="'.$row['BirthMonth'].'" selected', $month);
-				echo $month;
-				?>
-				</select>&nbsp; <select name="year" class="field_filled1" style="width: 50px;">
-				<?PHP
-				$year='<option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1969">1969</option><option value="1968">1968</option><option value="1967">1967</option><option value="1966">1966</option><option value="1965">1965</option><option value="1964">1964</option><option value="1963">1963</option><option value="1962">1962</option><option value="1961">1961</option><option value="1960">1960</option><option value="1959">1959</option><option value="1958">1958</option><option value="1957">1957</option><option value="1956">1956</option><option value="1955">1955</option><option value="1954">1954</option><option value="1953">1953</option><option value="1952">1952</option><option value="1951">1951</option><option value="1950">1950</option><option value="1949">1949</option><option value="1948">1948</option><option value="1947">1947</option><option value="1946">1946</option><option value="1945">1945</option><option value="1944">1944</option><option value="1943">1943</option><option value="1942">1942</option><option value="1941">1941</option><option value="1940">1940</option><option value="1939">1939</option><option value="1938">1938</option>';
-				$year = str_replace('<option value="'.$row['BirthYear'].'"','<option value="'.$row['BirthYear'].'" selected', $year);
-				echo $year;
-				?>
+				<option selected="selected" value="">Month</option>
+			<?php
+			$months= array("January","February","March","April","May","June","July","August","September","October","November","December");
+			for($x = 0; $x <= count($months); $x++) {
+				if($row['BirthMonth'] ==sprintf('%02d', $x)){
+			   		 echo "<option value='".sprintf('%02d', $x)."' selected='selected'>".$months[$x]."</option>" ;
+				}else{
+			  		  echo "<option value='".sprintf('%02d', $x)."'>".$months[$x]."</option>" ;
+			  	}
+			}	
+			?>
+				</select>&nbsp; 
+				<select name="year" class="field_filled1" style="width: 50px;">
+				<option selected="selected" value="">Year</option>
+					<?php
+					$thisYear = date("Y"); 
+					for ($x = $thisYear-65; $x <= $thisYear-18; $x++) {
+					 if($row['BirthYear'] ==$x){
+						echo "<option value='".$x."' selected='selected'>".$x."</option>";
+					 } else{
+					        echo "<option value='".$x."' >".$x."</option>";
+					 }
+					  
+					} 
+					?>
 				</select>
 <br>
 <input type="checkbox" name="dobstatus" value="true"
@@ -355,89 +383,10 @@ if($row['dobstatus']==1)
 
 
 			<!-- Gender form element at registration page is radio button so to pass its value we need to do this.. -->
-			<script language="JavaScript">
-			<!--
-
-			function nullify_caste()
-			{
-				document.profile.caste.options.length = 0;
-				document.profile.caste[0] = new Option('---------Select Caste---------', '');
-			}
-
-					function getcastes()
-		{
-
-		religion = document.profile.religion.options[document.profile.religion.selectedIndex].value;
-		if(religion == 1 || religion == 2 || religion == 3 || religion == 4 || religion == 5)
-				{
-				religioncastes = '<select id="caste" name="caste" class="field" onblur="validate_caste(this.name);"><option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option><option value="Muslim:Bengali">Muslim:Bengali</option><option value="Muslim:Dawoodi Bohra">Muslim:Dawoodi Bohra</option><option value="Muslim:Ehle-Hadith">Muslim:Ehle-Hadith</option><option value="Muslim:Khoja">Muslim:Khoja</option><option value="Muslim:Memon">Muslim:Memon</option><option value="Muslim:Rajput">Muslim:Rajput</option><option value="Muslim:Shia">Muslim:Shia</option><option value="Muslim:Shia Imami Ismaili">Muslim:Shia Imami Ismaili</option><option value="Muslim:Sunni">Muslim:Sunni</option></select>';
-				document.getElementById('manglikrow').style.display = "none";
-				}
-				else if(religion == 6 || religion == 7 || religion == 8 || religion == 9)
-				{
-								religioncastes = '<select id="caste" name="caste" class="field" onblur="validate_caste(this.name);"><option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option><option value="Christian:Born Again">Christian:Born Again</option><option value="Christian:CMS">Christian:CMS</option><option value="Christian:CSI">Christian:CSI</option><option value="Christian:Evangelical">Christian:Evangelical</option><option value="Christian:Indian Orthodox">Christian:Indian Orthodox</option><option value="Christian:Jacobite">Christian:Jacobite</option><option value="Christian:Marthoma">Christian:Marthoma</option><option value="Christian:Nadar">Christian:Nadar</option><option value="Christian:Pentecost">Christian:Pentecost</option><option value="Christian:Protestant">Christian:Protestant</option><option value="Christian:Roman Catholic">Christian:Roman Catholic</option><option value="Christian:Syrian">Christian:Syrian</option></select>';
-								document.getElementById('manglikrow').style.display = "none";
-				}
-				else if(religion == 10 || religion == 11 || religion == 12 || religion == 13 || religion == 14 || religion == 15 || religion == 16 || religion == 17 || religion == 18 || religion == 19 || religion == 20 || religion == 21 || religion == 22 || religion == 23 || religion == 24)
-				{
-				religioncastes = '<select id="caste" name="caste" class="field" onblur="validate_caste(this.name);"><option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option><option value="Hindu:6000 Niyogi">Hindu:6000 Niyogi</option><option value="Hindu:96K Kokanastha">Hindu:96K Kokanastha</option><option value="Hindu:Adi Dravida">Hindu:Adi Dravida</option><option value="Hindu:Agarwal">Hindu:Agarwal</option><option value="Hindu:Agri">Hindu:Agri</option><option value="Hindu:Ahom">Hindu:Ahom</option><option value="Hindu:Ambalavasi">Hindu:Ambalavasi</option><option value="Hindu:Arora">Hindu:Arora</option><option value="Hindu:Arunthathiyar">Hindu:Arunthathiyar</option><option value="Hindu:Arya Vysya">Hindu:Arya Vysya</option><option value="Hindu:Aryasamaj">Hindu:Aryasamaj</option><option value="Hindu:Bahi">Hindu:Bahi</option><option value="Hindu:Baidya">Hindu:Baidya</option><option value="Hindu:Baishnab">Hindu:Baishnab</option><option value="Hindu:Baishya">Hindu:Baishya</option><option value="Hindu:Baniya">Hindu:Baniya</option><option value="Hindu:Barujibi">Hindu:Barujibi</option><option value="Hindu:Bengali">Hindu:Bengali</option><option value="Hindu:Besta">Hindu:Besta</option><option value="Hindu:Bhandari">Hindu:Bhandari</option><option value="Hindu:Bhovi">Hindu:Bhovi</option><option value="Hindu:Billava">Hindu:Billava</option><option value="Hindu:Boyer">Hindu:Boyer</option><option value="Hindu:Brahmin">Hindu:Brahmin</option><option value="Hindu:Brahmin - Anavil">Hindu:Brahmin - Anavil</option><option value="Hindu:Brahmin - Audichya">Hindu:Brahmin - Audichya</option><option value="Hindu:Brahmin - Bengali">Hindu:Brahmin - Bengali</option><option value="Hindu:Brahmin - Bhumihar">Hindu:Brahmin - Bhumihar</option><option value="Hindu:Brahmin - Davadnya">Hindu:Brahmin - Davadnya</option><option value="Hindu:Brahmin - Deshastha">Hindu:Brahmin - Deshastha</option><option value="Hindu:Brahmin - Dhiman">Hindu:Brahmin - Dhiman</option><option value="Hindu:Brahmin - Garhwali">Hindu:Brahmin - Garhwali</option><option value="Hindu:Brahmin - Goswami">Hindu:Brahmin - Goswami</option><option value="Hindu:Brahmin - Gour">Hindu:Brahmin - Gour</option><option value="Hindu:Brahmin - Gowd Saraswat">Hindu:Brahmin - Gowd Saraswat</option><option value="Hindu:Brahmin - Gurukkal">Hindu:Brahmin - Gurukkal</option><option value="Hindu:Brahmin - Havyaka">Hindu:Brahmin - Havyaka</option><option value="Hindu:Brahmin - Iyer">Hindu:Brahmin - Iyer</option><option value="Hindu:Brahmin - Kannada Madhva">Hindu:Brahmin - Kannada Madhva</option><option value="Hindu:Brahmin - Kanyakubja">Hindu:Brahmin - Kanyakubja</option><option value="Hindu:Brahmin - Karhade">Hindu:Brahmin - Karhade</option><option value="Hindu:Brahmin - Kashmiri Pandit">Hindu:Brahmin - Kashmiri Pandit</option><option value="Hindu:Brahmin - Kokanastha">Hindu:Brahmin - Kokanastha</option><option value="Hindu:Brahmin - Kumaoni">Hindu:Brahmin - Kumaoni</option><option value="Hindu:Brahmin - Maharashtrian">Hindu:Brahmin - Maharashtrian</option><option value="Hindu:Brahmin - Maithili">Hindu:Brahmin - Maithili</option><option value="Hindu:Brahmin - Nagar">Hindu:Brahmin - Nagar</option><option value="Hindu:Brahmin - Niyogi Nandavariki">Hindu:Brahmin - Niyogi Nandavariki</option><option value="Hindu:Brahmin - Punjabi">Hindu:Brahmin - Punjabi</option><option value="Hindu:Brahmin - Sanadya">Hindu:Brahmin - Sanadya</option><option value="Hindu:Brahmin - Saraswat">Hindu:Brahmin - Saraswat</option><option value="Hindu:Brahmin - Saryuparin">Hindu:Brahmin - Saryuparin</option><option value="Hindu:Brahmin - Smartha">Hindu:Brahmin - Smartha</option><option value="Hindu:Brahmin - Telugu">Hindu:Brahmin - Telugu</option><option value="Hindu:Brahmin - Tyagi">Hindu:Brahmin - Tyagi</option><option value="Hindu:Brahmin - Vaidiki">Hindu:Brahmin - Vaidiki</option><option value="Hindu:Brahmin - Viswa">Hindu:Brahmin - Viswa</option><option value="Hindu:Bunt">Hindu:Bunt</option><option value="Hindu:CKP">Hindu:CKP</option><option value="Hindu:Chambhar">Hindu:Chambhar</option><option value="Hindu:Chaurasia">Hindu:Chaurasia</option><option value="Hindu:Chettiar">Hindu:Chettiar</option><option value="Hindu:Chhetri">Hindu:Chhetri</option><option value="Hindu:Coorgi">Hindu:Coorgi</option><option value="Hindu:Devanga">Hindu:Devanga</option><option value="Hindu:Devendra Kula Vellalar">Hindu:Devendra Kula Vellalar</option><option value="Hindu:Dhangar">Hindu:Dhangar</option><option value="Hindu:Dheevara">Hindu:Dheevara</option><option value="Hindu:Dhobi">Hindu:Dhobi</option><option value="Hindu:Digambar">Hindu:Digambar</option><option value="Hindu:Ediga">Hindu:Ediga</option><option value="Hindu:Ezhava">Hindu:Ezhava</option><option value="Hindu:Ezhuthachan">Hindu:Ezhuthachan</option><option value="Hindu:Gandla">Hindu:Gandla</option><option value="Hindu:Ganiga">Hindu:Ganiga</option><option value="Hindu:Garhwali">Hindu:Garhwali</option><option value="Hindu:Gavara">Hindu:Gavara</option><option value="Hindu:Ghumar">Hindu:Ghumar</option><option value="Hindu:Goswami">Hindu:Goswami</option><option value="Hindu:Goud">Hindu:Goud</option><option value="Hindu:Gounder">Hindu:Gounder</option><option value="Hindu:Gowda">Hindu:Gowda</option><option value="Hindu:Gujarati">Hindu:Gujarati</option><option value="Hindu:Gupta">Hindu:Gupta</option><option value="Hindu:Gurjar">Hindu:Gurjar</option><option value="Hindu:Iyengar">Hindu:Iyengar</option><option value="Hindu:Iyer">Hindu:Iyer</option><option value="Hindu:Jaiswal">Hindu:Jaiswal</option><option value="Hindu:Jat">Hindu:Jat</option><option value="Hindu:Kaibarta">Hindu:Kaibarta</option><option value="Hindu:Kalar">Hindu:Kalar</option><option value="Hindu:Kalinga Vysya">Hindu:Kalinga Vysya</option><option value="Hindu:Kamboj">Hindu:Kamboj</option><option value="Hindu:Kamma">Hindu:Kamma</option><option value="Hindu:Kannada Mogaveera">Hindu:Kannada Mogaveera</option><option value="Hindu:Kapu">Hindu:Kapu</option><option value="Hindu:Kapu Naidu">Hindu:Kapu Naidu</option><option value="Hindu:Karana">Hindu:Karana</option><option value="Hindu:Karuneekar">Hindu:Karuneekar</option><option value="Hindu:Kashyap">Hindu:Kashyap</option><option value="Hindu:Kayastha">Hindu:Kayastha</option><option value="Hindu:Khandayat">Hindu:Khandayat</option><option value="Hindu:Khandelwal">Hindu:Khandelwal</option><option value="Hindu:Khatri">Hindu:Khatri</option><option value="Hindu:Koli">Hindu:Koli</option><option value="Hindu:Kongu Vellala Gounder">Hindu:Kongu Vellala Gounder</option><option value="Hindu:Kori">Hindu:Kori</option><option value="Hindu:Koshti">Hindu:Koshti</option><option value="Hindu:Kshatriya">Hindu:Kshatriya</option><option value="Hindu:Kshatriya - Agnikula">Hindu:Kshatriya - Agnikula</option><option value="Hindu:Kshatriya - Bhavasar">Hindu:Kshatriya - Bhavasar</option><option value="Hindu:Kudumbi">Hindu:Kudumbi</option><option value="Hindu:Kulalar">Hindu:Kulalar</option><option value="Hindu:Kumawat">Hindu:Kumawat</option><option value="Hindu:Kumbara">Hindu:Kumbara</option><option value="Hindu:Kumbhakar">Hindu:Kumbhakar</option><option value="Hindu:Kumbhar">Hindu:Kumbhar</option><option value="Hindu:Kumhar">Hindu:Kumhar</option><option value="Hindu:Kummari">Hindu:Kummari</option><option value="Hindu:Kunbi">Hindu:Kunbi</option><option value="Hindu:Kurmi">Hindu:Kurmi</option><option value="Hindu:Kuruba">Hindu:Kuruba</option><option value="Hindu:Kurumbar">Hindu:Kurumbar</option><option value="Hindu:Kushwaha">Hindu:Kushwaha</option><option value="Hindu:Lambani">Hindu:Lambani</option><option value="Hindu:Leva Patil">Hindu:Leva Patil</option><option value="Hindu:Lingayat">Hindu:Lingayat</option><option value="Hindu:Lohana">Hindu:Lohana</option><option value="Hindu:Lubana">Hindu:Lubana</option><option value="Hindu:Madiga">Hindu:Madiga</option><option value="Hindu:Maharashtrian">Hindu:Maharashtrian</option><option value="Hindu:Maheshwari">Hindu:Maheshwari</option><option value="Hindu:Mahishya">Hindu:Mahishya</option><option value="Hindu:Malayalee Namboodiri">Hindu:Malayalee Namboodiri</option><option value="Hindu:Malayalee Variar">Hindu:Malayalee Variar</option><option value="Hindu:Mali">Hindu:Mali</option><option value="Hindu:Malla">Hindu:Malla</option><option value="Hindu:Mannuru Kapu">Hindu:Mannuru Kapu</option><option value="Hindu:Maratha">Hindu:Maratha</option><option value="Hindu:Maratha - Gomantak">Hindu:Maratha - Gomantak</option><option value="Hindu:Maruthuvar">Hindu:Maruthuvar</option><option value="Hindu:Marvar">Hindu:Marvar</option><option value="Hindu:Marwari">Hindu:Marwari</option><option value="Hindu:Maurya">Hindu:Maurya</option><option value="Hindu:Meenavar">Hindu:Meenavar</option><option value="Hindu:Menon">Hindu:Menon</option><option value="Hindu:Meru Darji">Hindu:Meru Darji</option><option value="Hindu:Mogaveera">Hindu:Mogaveera</option><option value="Hindu:Mudaliar">Hindu:Mudaliar</option><option value="Hindu:Mudaliar - Arcot">Hindu:Mudaliar - Arcot</option><option value="Hindu:Mudaliar - Saiva">Hindu:Mudaliar - Saiva</option><option value="Hindu:Mudaliar - Senguntha">Hindu:Mudaliar - Senguntha</option><option value="Hindu:Mudiraj">Hindu:Mudiraj</option><option value="Hindu:Mukulathur">Hindu:Mukulathur</option><option value="Hindu:Muthuraja">Hindu:Muthuraja</option><option value="Hindu:Nadar">Hindu:Nadar</option><option value="Hindu:Naicker">Hindu:Naicker</option><option value="Hindu:Naidu">Hindu:Naidu</option><option value="Hindu:Naidu - Balija">Hindu:Naidu - Balija</option><option value="Hindu:Nair">Hindu:Nair</option><option value="Hindu:Nair - Vilakkithala">Hindu:Nair - Vilakkithala</option><option value="Hindu:Nair - Vaniya">Hindu:Nair - Vaniya</option><option value="Hindu:Nair - Velethadathu">Hindu:Nair - Velethadathu</option><option value="Hindu:Namasudra">Hindu:Namasudra</option><option value="Hindu:Nambiar">Hindu:Nambiar</option><option value="Hindu:Napit">Hindu:Napit</option><option value="Hindu:Nayak">Hindu:Nayak</option><option value="Hindu:Nepali">Hindu:Nepali</option><option value="Hindu:OBC (Barber-Naayee)">Hindu:OBC (Barber-Naayee)</option><option value="Hindu:Oswal">Hindu:Oswal</option><option value="Hindu:Padmashali">Hindu:Padmashali</option><option value="Hindu:Parit">Hindu:Parit</option><option value="Hindu:Parkava Kulam">Hindu:Parkava Kulam</option><option value="Hindu:Patel - Dodia">Hindu:Patel - Dodia</option><option value="Hindu:Patel - Desai">Hindu:Patel - Desai</option><option value="Hindu:Patel - Kadva">Hindu:Patel - Kadva</option><option value="Hindu:Patel - Leva">Hindu:Patel - Leva</option><option value="Hindu:Perika">Hindu:Perika</option><option value="Hindu:Pillai">Hindu:Pillai</option><option value="Hindu:Prajapati">Hindu:Prajapati</option><option value="Hindu:Punjabi">Hindu:Punjabi</option><option value="Hindu:Rajaka">Hindu:Rajaka</option><option value="Hindu:Rajput">Hindu:Rajput</option><option value="Hindu:Rajput - Garhwali">Hindu:Rajput - Garhwali</option><option value="Hindu:Rajput - Kumaoni">Hindu:Rajput - Kumaoni</option><option value="Hindu:Ramdasia">Hindu:Ramdasia</option><option value="Hindu:Ramgharia">Hindu:Ramgharia</option><option value="Hindu:Ravidasia">Hindu:Ravidasia</option><option value="Hindu:Reddy">Hindu:Reddy</option><option value="Hindu:Sadgop">Hindu:Sadgop</option><option value="Hindu:Sahu">Hindu:Sahu</option><option value="Hindu:Saini">Hindu:Saini</option><option value="Hindu:Saliya">Hindu:Saliya</option><option value="Hindu:Scheduled Caste">Hindu:Scheduled Caste</option><option value="Hindu:Scheduled Tribe">Hindu:Scheduled Tribe</option><option value="Hindu:Senai Thalaivar">Hindu:Senai Thalaivar</option><option value="Hindu:Sepahia">Hindu:Sepahia</option><option value="Hindu:Setti Balija">Hindu:Setti Balija</option><option value="Hindu:Shimpi">Hindu:Shimpi</option><option value="Hindu:Sindhi">Hindu:Sindhi</option><option value="Hindu:Somvanshi">Hindu:Somvanshi</option><option value="Hindu:Sonar">Hindu:Sonar</option><option value="Hindu:Sowrashtra">Hindu:Sowrashtra</option><option value="Hindu:Sozhiya Vellalar">Hindu:Sozhiya Vellalar</option><option value="Hindu:Sutar">Hindu:Sutar</option><option value="Hindu:Swarnakar">Hindu:Swarnakar</option><option value="Hindu:Tamil Yadava">Hindu:Tamil Yadava</option><option value="Hindu:Telaga">Hindu:Telaga</option><option value="Hindu:Teli">Hindu:Teli</option><option value="Hindu:Telugu">Hindu:Telugu</option><option value="Hindu:Thevar">Hindu:Thevar</option><option value="Hindu:Thigala">Hindu:Thigala</option><option value="Hindu:Thiyya">Hindu:Thiyya</option><option value="Hindu:Udayar">Hindu:Udayar</option><option value="Hindu:Uppara">Hindu:Uppara</option><option value="Hindu:Vadagalai">Hindu:Vadagalai</option><option value="Hindu:Vaddera">Hindu:Vaddera</option><option value="Hindu:Vaish">Hindu:Vaish</option><option value="Hindu:Vaish - Dhaneshawat">Hindu:Vaish - Dhaneshawat</option><option value="Hindu:Vaishnav">Hindu:Vaishnav</option><option value="Hindu:Vaishnav - Bhatia">Hindu:Vaishnav - Bhatia</option><option value="Hindu:Vaishnav - Vania">Hindu:Vaishnav - Vania</option><option value="Hindu:Vaishya">Hindu:Vaishya</option><option value="Hindu:Valmiki">Hindu:Valmiki</option><option value="Hindu:Vanjara">Hindu:Vanjara</option><option value="Hindu:Vannar">Hindu:Vannar</option><option value="Hindu:Vanniyakullak Kshatriya">Hindu:Vanniyakullak Kshatriya</option><option value="Hindu:Vanniyar">Hindu:Vanniyar</option><option value="Hindu:Varshney">Hindu:Varshney</option><option value="Hindu:Veera Saivam">Hindu:Veera Saivam</option><option value="Hindu:Veerashaiva">Hindu:Veerashaiva</option><option value="Hindu:Vellalar">Hindu:Vellalar</option><option value="Hindu:Vellama">Hindu:Vellama</option><option value="Hindu:Vishwakarma">Hindu:Vishwakarma</option><option value="Hindu:Vokaliga">Hindu:Vokaliga</option><option value="Hindu:Vysya">Hindu:Vysya</option><option value="Hindu:Yadav">Hindu:Yadav</option></select>';
-				document.getElementById('manglikrow').style.display = "block";
-				}
-				else if(religion == 25)
-				{
-					religioncastes = '<select id="caste" name="caste" class="field" onblur="validate_caste(this.name);"><option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option></select>';
-					document.getElementById('manglikrow').style.display = "none";
-				}
-				else if(religion == 26 || religion == 27 || religion == 28 || religion == 29 || religion == 30)
-				{
-								religioncastes = '<select id="caste" name="caste" class="field" onblur="validate_caste(this.name);"><option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option><option value="Sikh:Clean Shaven">Sikh:Clean Shaven</option><option value="Sikh:Gursikh">Sikh:Gursikh</option><option value="Sikh:Jat">Sikh:Jat</option><option value="Sikh:Kamboj">Sikh:Kamboj</option><option value="Sikh:Kesadhari">Sikh:Kesadhari</option><option value="Sikh:Khatri">Sikh:Khatri</option><option value="Sikh:Kshatriya">Sikh:Kshatriya</option><option value="Sikh:Labana">Sikh:Labana</option><option value="Sikh:Ramdasia">Sikh:Ramdasia</option><option value="Sikh:Ramgharia">Sikh:Ramgharia</option><option value="Sikh:Ravidasia">Sikh:Ravidasia</option><option value="Sikh:Saini">Sikh:Saini</option></select>';
-								document.getElementById('manglikrow').style.display = "none";
-				}
-				else if(religion == 31 || religion == 32 || religion == 33 || religion == 34)
-				{
-								religioncastes = '<select id="caste" name="caste" class="field" onblur="validate_caste(this.name);"><option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option><option value="Jain:Digambar">Jain:Digambar</option><option value="Jain:Shwetamber">Jain:Shwetamber</option><option value="Jain:Vania">Jain:Vania</option></select>';
-								document.getElementById('manglikrow').style.display = "none";
-				}
-				else if(religion == 35 || religion == 36 || religion == 37 || religion == 38 || religion == 39)
-				{
-					religioncastes = '<select id="caste" name="caste" class="field" onblur="validate_caste(this.name);"><option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option></select>';
-					document.getElementById('manglikrow').style.display = "none";
-				}
-				document.getElementById('selectedcastes').innerHTML = religioncastes;
-
-		}
-
-			//-->
-			</script>
+			
 
 			<table class="tbl1" border="0" cellpadding="5" cellspacing="0">
-			<tbody><tr>
-				<td class="td1" style="cursor: pointer;" onclick="focus_field('religion');" valign="top" width="139"><em>*</em><b>Religion</b></td>
-				<td class="td2" valign="top">
-				<select id="religion" name="religion" class="field_filled"  onblur="validate_religion(this.name);" onChange="getcastes();">
-				<?PHP
-				$sqlCountry = "SELECT * FROM religion order by ReligionID";
-				$resultCountry = mysql_query($sqlCountry, $conn);
-				if (@mysql_num_rows($resultCountry)!=0){
-					while($rowCountry = mysql_fetch_array($resultCountry))
-					{
-						?>
-						<option value="<?PHP echo $rowCountry['ReligionID']?>"
-						<?PHP
-						if($row['ReligionID'] == $rowCountry['ReligionID'])
-							echo "selected";
-						?>
-						><?PHP echo $rowCountry['Religion']?></option>
-						<?
-					}
-				}
-				?>
-				</select>
-				<br>
-				<span id="errmsg_religion" class="error"></span>
-				</td>
-
-			</tr>
+			<tbody>
 
 			<tr id="show_hide_mothertongue">
 				<td class="td1" style="cursor: pointer;" onclick="focus_field('mothertongue');" valign="top"><em>*</em><b>Mother Tongue</b></td>
@@ -463,62 +412,16 @@ if($row['dobstatus']==1)
 				<span id="errmsg_mothertongue" class="error"></span>
 				</td>
 			</tr>
+<tr>
+					<td class="td1" valign="top"><em>&nbsp;</em><label for="subcaste" style="padding-left: 3px;"><b>Sub caste / sect</b></label></td>
+					<td>
+					<?php include("sections/subcastes.php"); ?>
+					<br>
+					<span id="errmsg_caste" class="error"></span></td>
+		</tr>
+			
 
-			<tr id="show_hide_caste">
-				<td class="td1" style="cursor: pointer;" onclick="focus_field('caste');" valign="top"><em>*</em><b>Caste</b></td>
-				<td valign="top">
-				<span id="selectedcastes">
-				<select id="caste" name="caste" class="field" onblur="validate_caste(this.name);">
-				<?PHP
-				if($row['ReligionID'] == 1 || $row['ReligionID'] == 2 || $row['ReligionID'] == 3 || $row['ReligionID'] == 4 || $row['ReligionID'] == 5)
-				{
-				$caste = '<option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option>
-				<option value="Muslim:Bengali">Muslim:Bengali</option><option value="Muslim:Dawoodi Bohra">Muslim:Dawoodi Bohra</option><option value="Muslim:Ehle-Hadith">Muslim:Ehle-Hadith</option><option value="Muslim:Khoja">Muslim:Khoja</option><option value="Muslim:Memon">Muslim:Memon</option><option value="Muslim:Rajput">Muslim:Rajput</option><option value="Muslim:Shia">Muslim:Shia</option><option value="Muslim:Shia Imami Ismaili">Muslim:Shia Imami Ismaili</option><option value="Muslim:Sunni">Muslim:Sunni</option>';
-				}
-				else if($row['ReligionID'] == 6 || $row['ReligionID'] == 7 || $row['ReligionID'] == 8 || $row['ReligionID'] == 9)
-				{
-								$caste = '<option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option>
-<option value="Christian:Born Again">Christian:Born Again</option><option value="Christian:CMS">Christian:CMS</option><option value="Christian:CSI">Christian:CSI</option><option value="Christian:Evangelical">Christian:Evangelical</option><option value="Christian:Indian Orthodox">Christian:Indian Orthodox</option><option value="Christian:Jacobite">Christian:Jacobite</option><option value="Christian:Marthoma">Christian:Marthoma</option><option value="Christian:Nadar">Christian:Nadar</option><option value="Christian:Pentecost">Christian:Pentecost</option><option value="Christian:Protestant">Christian:Protestant</option><option value="Christian:Roman Catholic">Christian:Roman Catholic</option><option value="Christian:Syrian">Christian:Syrian</option>';
-				}
-				else if($row['ReligionID'] == 10 || $row['ReligionID'] == 11 || $row['ReligionID'] == 12 || $row['ReligionID'] == 13 || $row['ReligionID'] == 14 || $row['ReligionID'] == 15 || $row['ReligionID'] == 16 || $row['ReligionID'] == 17 || $row['ReligionID'] == 18 || $row['ReligionID'] == 19 || $row['ReligionID'] == 20 || $row['ReligionID'] == 21 || $row['ReligionID'] == 22 || $row['ReligionID'] == 23 || $row['ReligionID'] == 24)
-				{
-				$caste = '<option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option>
-				<option value="Hindu:6000 Niyogi">Hindu:6000 Niyogi</option><option value="Hindu:96K Kokanastha">Hindu:96K Kokanastha</option><option value="Hindu:Adi Dravida">Hindu:Adi Dravida</option><option value="Hindu:Agarwal">Hindu:Agarwal</option><option value="Hindu:Agri">Hindu:Agri</option><option value="Hindu:Ahom">Hindu:Ahom</option><option value="Hindu:Ambalavasi">Hindu:Ambalavasi</option><option value="Hindu:Arora">Hindu:Arora</option><option value="Hindu:Arunthathiyar">Hindu:Arunthathiyar</option><option value="Hindu:Arya Vysya">Hindu:Arya Vysya</option><option value="Hindu:Aryasamaj">Hindu:Aryasamaj</option><option value="Hindu:Bahi">Hindu:Bahi</option><option value="Hindu:Baidya">Hindu:Baidya</option><option value="Hindu:Baishnab">Hindu:Baishnab</option><option value="Hindu:Baishya">Hindu:Baishya</option><option value="Hindu:Baniya">Hindu:Baniya</option><option value="Hindu:Barujibi">Hindu:Barujibi</option><option value="Hindu:Bengali">Hindu:Bengali</option><option value="Hindu:Besta">Hindu:Besta</option><option value="Hindu:Bhandari">Hindu:Bhandari</option><option value="Hindu:Bhovi">Hindu:Bhovi</option><option value="Hindu:Billava">Hindu:Billava</option><option value="Hindu:Boyer">Hindu:Boyer</option><option value="Hindu:Brahmin">Hindu:Brahmin</option><option value="Hindu:Brahmin - Anavil">Hindu:Brahmin - Anavil</option><option value="Hindu:Brahmin - Audichya">Hindu:Brahmin - Audichya</option><option value="Hindu:Brahmin - Bengali">Hindu:Brahmin - Bengali</option><option value="Hindu:Brahmin - Bhumihar">Hindu:Brahmin - Bhumihar</option><option value="Hindu:Brahmin - Davadnya">Hindu:Brahmin - Davadnya</option><option value="Hindu:Brahmin - Deshastha">Hindu:Brahmin - Deshastha</option><option value="Hindu:Brahmin - Dhiman">Hindu:Brahmin - Dhiman</option><option value="Hindu:Brahmin - Garhwali">Hindu:Brahmin - Garhwali</option><option value="Hindu:Brahmin - Goswami">Hindu:Brahmin - Goswami</option><option value="Hindu:Brahmin - Gour">Hindu:Brahmin - Gour</option><option value="Hindu:Brahmin - Gowd Saraswat">Hindu:Brahmin - Gowd Saraswat</option><option value="Hindu:Brahmin - Gurukkal">Hindu:Brahmin - Gurukkal</option><option value="Hindu:Brahmin - Havyaka">Hindu:Brahmin - Havyaka</option><option value="Hindu:Brahmin - Iyer">Hindu:Brahmin - Iyer</option><option value="Hindu:Brahmin - Kannada Madhva">Hindu:Brahmin - Kannada Madhva</option><option value="Hindu:Brahmin - Kanyakubja">Hindu:Brahmin - Kanyakubja</option><option value="Hindu:Brahmin - Karhade">Hindu:Brahmin - Karhade</option><option value="Hindu:Brahmin - Kashmiri Pandit">Hindu:Brahmin - Kashmiri Pandit</option><option value="Hindu:Brahmin - Kokanastha">Hindu:Brahmin - Kokanastha</option><option value="Hindu:Brahmin - Kumaoni">Hindu:Brahmin - Kumaoni</option><option value="Hindu:Brahmin - Maharashtrian">Hindu:Brahmin - Maharashtrian</option><option value="Hindu:Brahmin - Maithili">Hindu:Brahmin - Maithili</option><option value="Hindu:Brahmin - Nagar">Hindu:Brahmin - Nagar</option><option value="Hindu:Brahmin - Niyogi Nandavariki">Hindu:Brahmin - Niyogi Nandavariki</option><option value="Hindu:Brahmin - Punjabi">Hindu:Brahmin - Punjabi</option><option value="Hindu:Brahmin - Sanadya">Hindu:Brahmin - Sanadya</option><option value="Hindu:Brahmin - Saraswat">Hindu:Brahmin - Saraswat</option><option value="Hindu:Brahmin - Saryuparin">Hindu:Brahmin - Saryuparin</option><option value="Hindu:Brahmin - Smartha">Hindu:Brahmin - Smartha</option><option value="Hindu:Brahmin - Telugu">Hindu:Brahmin - Telugu</option><option value="Hindu:Brahmin - Tyagi">Hindu:Brahmin - Tyagi</option><option value="Hindu:Brahmin - Vaidiki">Hindu:Brahmin - Vaidiki</option><option value="Hindu:Brahmin - Viswa">Hindu:Brahmin - Viswa</option><option value="Hindu:Bunt">Hindu:Bunt</option><option value="Hindu:CKP">Hindu:CKP</option><option value="Hindu:Chambhar">Hindu:Chambhar</option><option value="Hindu:Chaurasia">Hindu:Chaurasia</option><option value="Hindu:Chettiar">Hindu:Chettiar</option><option value="Hindu:Chhetri">Hindu:Chhetri</option><option value="Hindu:Coorgi">Hindu:Coorgi</option><option value="Hindu:Devanga">Hindu:Devanga</option><option value="Hindu:Devendra Kula Vellalar">Hindu:Devendra Kula Vellalar</option><option value="Hindu:Dhangar">Hindu:Dhangar</option><option value="Hindu:Dheevara">Hindu:Dheevara</option><option value="Hindu:Dhobi">Hindu:Dhobi</option><option value="Hindu:Digambar">Hindu:Digambar</option><option value="Hindu:Ediga">Hindu:Ediga</option><option value="Hindu:Ezhava">Hindu:Ezhava</option><option value="Hindu:Ezhuthachan">Hindu:Ezhuthachan</option><option value="Hindu:Gandla">Hindu:Gandla</option><option value="Hindu:Ganiga">Hindu:Ganiga</option><option value="Hindu:Garhwali">Hindu:Garhwali</option><option value="Hindu:Gavara">Hindu:Gavara</option><option value="Hindu:Ghumar">Hindu:Ghumar</option><option value="Hindu:Goswami">Hindu:Goswami</option><option value="Hindu:Goud">Hindu:Goud</option><option value="Hindu:Gounder">Hindu:Gounder</option><option value="Hindu:Gowda">Hindu:Gowda</option><option value="Hindu:Gujarati">Hindu:Gujarati</option><option value="Hindu:Gupta">Hindu:Gupta</option><option value="Hindu:Gurjar">Hindu:Gurjar</option><option value="Hindu:Iyengar">Hindu:Iyengar</option><option value="Hindu:Iyer">Hindu:Iyer</option><option value="Hindu:Jaiswal">Hindu:Jaiswal</option><option value="Hindu:Jat">Hindu:Jat</option><option value="Hindu:Kaibarta">Hindu:Kaibarta</option><option value="Hindu:Kalar">Hindu:Kalar</option><option value="Hindu:Kalinga Vysya">Hindu:Kalinga Vysya</option><option value="Hindu:Kamboj">Hindu:Kamboj</option><option value="Hindu:Kamma">Hindu:Kamma</option><option value="Hindu:Kannada Mogaveera">Hindu:Kannada Mogaveera</option><option value="Hindu:Kapu">Hindu:Kapu</option><option value="Hindu:Kapu Naidu">Hindu:Kapu Naidu</option><option value="Hindu:Karana">Hindu:Karana</option><option value="Hindu:Karuneekar">Hindu:Karuneekar</option><option value="Hindu:Kashyap">Hindu:Kashyap</option><option value="Hindu:Kayastha">Hindu:Kayastha</option><option value="Hindu:Khandayat">Hindu:Khandayat</option><option value="Hindu:Khandelwal">Hindu:Khandelwal</option><option value="Hindu:Khatri">Hindu:Khatri</option><option value="Hindu:Koli">Hindu:Koli</option><option value="Hindu:Kongu Vellala Gounder">Hindu:Kongu Vellala Gounder</option><option value="Hindu:Kori">Hindu:Kori</option><option value="Hindu:Koshti">Hindu:Koshti</option><option value="Hindu:Kshatriya">Hindu:Kshatriya</option><option value="Hindu:Kshatriya - Agnikula">Hindu:Kshatriya - Agnikula</option><option value="Hindu:Kshatriya - Bhavasar">Hindu:Kshatriya - Bhavasar</option><option value="Hindu:Kudumbi">Hindu:Kudumbi</option><option value="Hindu:Kulalar">Hindu:Kulalar</option><option value="Hindu:Kumawat">Hindu:Kumawat</option><option value="Hindu:Kumbara">Hindu:Kumbara</option><option value="Hindu:Kumbhakar">Hindu:Kumbhakar</option><option value="Hindu:Kumbhar">Hindu:Kumbhar</option><option value="Hindu:Kumhar">Hindu:Kumhar</option><option value="Hindu:Kummari">Hindu:Kummari</option><option value="Hindu:Kunbi">Hindu:Kunbi</option><option value="Hindu:Kurmi">Hindu:Kurmi</option><option value="Hindu:Kuruba">Hindu:Kuruba</option><option value="Hindu:Kurumbar">Hindu:Kurumbar</option><option value="Hindu:Kushwaha">Hindu:Kushwaha</option><option value="Hindu:Lambani">Hindu:Lambani</option><option value="Hindu:Leva Patil">Hindu:Leva Patil</option><option value="Hindu:Lingayat">Hindu:Lingayat</option><option value="Hindu:Lohana">Hindu:Lohana</option><option value="Hindu:Lubana">Hindu:Lubana</option><option value="Hindu:Madiga">Hindu:Madiga</option><option value="Hindu:Maharashtrian">Hindu:Maharashtrian</option><option value="Hindu:Maheshwari">Hindu:Maheshwari</option><option value="Hindu:Mahishya">Hindu:Mahishya</option><option value="Hindu:Malayalee Namboodiri">Hindu:Malayalee Namboodiri</option><option value="Hindu:Malayalee Variar">Hindu:Malayalee Variar</option><option value="Hindu:Mali">Hindu:Mali</option><option value="Hindu:Malla">Hindu:Malla</option><option value="Hindu:Mannuru Kapu">Hindu:Mannuru Kapu</option><option value="Hindu:Maratha">Hindu:Maratha</option><option value="Hindu:Maratha - Gomantak">Hindu:Maratha - Gomantak</option><option value="Hindu:Maruthuvar">Hindu:Maruthuvar</option><option value="Hindu:Marvar">Hindu:Marvar</option><option value="Hindu:Marwari">Hindu:Marwari</option><option value="Hindu:Maurya">Hindu:Maurya</option><option value="Hindu:Meenavar">Hindu:Meenavar</option><option value="Hindu:Menon">Hindu:Menon</option><option value="Hindu:Meru Darji">Hindu:Meru Darji</option><option value="Hindu:Mogaveera">Hindu:Mogaveera</option><option value="Hindu:Mudaliar">Hindu:Mudaliar</option><option value="Hindu:Mudaliar - Arcot">Hindu:Mudaliar - Arcot</option><option value="Hindu:Mudaliar - Saiva">Hindu:Mudaliar - Saiva</option><option value="Hindu:Mudaliar - Senguntha">Hindu:Mudaliar - Senguntha</option><option value="Hindu:Mudiraj">Hindu:Mudiraj</option><option value="Hindu:Mukulathur">Hindu:Mukulathur</option><option value="Hindu:Muthuraja">Hindu:Muthuraja</option><option value="Hindu:Nadar">Hindu:Nadar</option><option value="Hindu:Naicker">Hindu:Naicker</option><option value="Hindu:Naidu">Hindu:Naidu</option><option value="Hindu:Naidu - Balija">Hindu:Naidu - Balija</option><option value="Hindu:Nair">Hindu:Nair</option><option value="Hindu:Nair - Vilakkithala">Hindu:Nair - Vilakkithala</option><option value="Hindu:Nair - Vaniya">Hindu:Nair - Vaniya</option><option value="Hindu:Nair - Velethadathu">Hindu:Nair - Velethadathu</option><option value="Hindu:Namasudra">Hindu:Namasudra</option><option value="Hindu:Nambiar">Hindu:Nambiar</option><option value="Hindu:Napit">Hindu:Napit</option><option value="Hindu:Nayak">Hindu:Nayak</option><option value="Hindu:Nepali">Hindu:Nepali</option><option value="Hindu:OBC (Barber-Naayee)">Hindu:OBC (Barber-Naayee)</option><option value="Hindu:Oswal">Hindu:Oswal</option><option value="Hindu:Padmashali">Hindu:Padmashali</option><option value="Hindu:Parit">Hindu:Parit</option><option value="Hindu:Parkava Kulam">Hindu:Parkava Kulam</option><option value="Hindu:Patel - Dodia">Hindu:Patel - Dodia</option><option value="Hindu:Patel - Desai">Hindu:Patel - Desai</option><option value="Hindu:Patel - Kadva">Hindu:Patel - Kadva</option><option value="Hindu:Patel - Leva">Hindu:Patel - Leva</option><option value="Hindu:Perika">Hindu:Perika</option><option value="Hindu:Pillai">Hindu:Pillai</option><option value="Hindu:Prajapati">Hindu:Prajapati</option><option value="Hindu:Punjabi">Hindu:Punjabi</option><option value="Hindu:Rajaka">Hindu:Rajaka</option><option value="Hindu:Rajput">Hindu:Rajput</option><option value="Hindu:Rajput - Garhwali">Hindu:Rajput - Garhwali</option><option value="Hindu:Rajput - Kumaoni">Hindu:Rajput - Kumaoni</option><option value="Hindu:Ramdasia">Hindu:Ramdasia</option><option value="Hindu:Ramgharia">Hindu:Ramgharia</option><option value="Hindu:Ravidasia">Hindu:Ravidasia</option><option value="Hindu:Reddy">Hindu:Reddy</option><option value="Hindu:Sadgop">Hindu:Sadgop</option><option value="Hindu:Sahu">Hindu:Sahu</option><option value="Hindu:Saini">Hindu:Saini</option><option value="Hindu:Saliya">Hindu:Saliya</option><option value="Hindu:Scheduled Caste">Hindu:Scheduled Caste</option><option value="Hindu:Scheduled Tribe">Hindu:Scheduled Tribe</option><option value="Hindu:Senai Thalaivar">Hindu:Senai Thalaivar</option><option value="Hindu:Sepahia">Hindu:Sepahia</option><option value="Hindu:Setti Balija">Hindu:Setti Balija</option><option value="Hindu:Shimpi">Hindu:Shimpi</option><option value="Hindu:Sindhi">Hindu:Sindhi</option><option value="Hindu:Somvanshi">Hindu:Somvanshi</option><option value="Hindu:Sonar">Hindu:Sonar</option><option value="Hindu:Sowrashtra">Hindu:Sowrashtra</option><option value="Hindu:Sozhiya Vellalar">Hindu:Sozhiya Vellalar</option><option value="Hindu:Sutar">Hindu:Sutar</option><option value="Hindu:Swarnakar">Hindu:Swarnakar</option><option value="Hindu:Tamil Yadava">Hindu:Tamil Yadava</option><option value="Hindu:Telaga">Hindu:Telaga</option><option value="Hindu:Teli">Hindu:Teli</option><option value="Hindu:Telugu">Hindu:Telugu</option><option value="Hindu:Thevar">Hindu:Thevar</option><option value="Hindu:Thigala">Hindu:Thigala</option><option value="Hindu:Thiyya">Hindu:Thiyya</option><option value="Hindu:Udayar">Hindu:Udayar</option><option value="Hindu:Uppara">Hindu:Uppara</option><option value="Hindu:Vadagalai">Hindu:Vadagalai</option><option value="Hindu:Vaddera">Hindu:Vaddera</option><option value="Hindu:Vaish">Hindu:Vaish</option><option value="Hindu:Vaish - Dhaneshawat">Hindu:Vaish - Dhaneshawat</option><option value="Hindu:Vaishnav">Hindu:Vaishnav</option><option value="Hindu:Vaishnav - Bhatia">Hindu:Vaishnav - Bhatia</option><option value="Hindu:Vaishnav - Vania">Hindu:Vaishnav - Vania</option><option value="Hindu:Vaishya">Hindu:Vaishya</option><option value="Hindu:Valmiki">Hindu:Valmiki</option><option value="Hindu:Vanjara">Hindu:Vanjara</option><option value="Hindu:Vannar">Hindu:Vannar</option><option value="Hindu:Vanniyakullak Kshatriya">Hindu:Vanniyakullak Kshatriya</option><option value="Hindu:Vanniyar">Hindu:Vanniyar</option><option value="Hindu:Varshney">Hindu:Varshney</option><option value="Hindu:Veera Saivam">Hindu:Veera Saivam</option><option value="Hindu:Veerashaiva">Hindu:Veerashaiva</option><option value="Hindu:Vellalar">Hindu:Vellalar</option><option value="Hindu:Vellama">Hindu:Vellama</option><option value="Hindu:Vishwakarma">Hindu:Vishwakarma</option><option value="Hindu:Vokaliga">Hindu:Vokaliga</option><option value="Hindu:Vysya">Hindu:Vysya</option><option value="Hindu:Yadav">Hindu:Yadav</option>';
-				}
-				else if($row['ReligionID'] == 25)
-				{
-					$caste = '<option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option>';
-				}
-				else if($row['ReligionID'] == 26 || $row['ReligionID'] == 27 || $row['ReligionID'] == 28 || $row['ReligionID'] == 29 || $row['ReligionID'] == 30)
-				{
-								$caste = '<option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option>
-<option value="Sikh:Clean Shaven">Sikh:Clean Shaven</option><option value="Sikh:Gursikh">Sikh:Gursikh</option><option value="Sikh:Jat">Sikh:Jat</option><option value="Sikh:Kamboj">Sikh:Kamboj</option><option value="Sikh:Kesadhari">Sikh:Kesadhari</option><option value="Sikh:Khatri">Sikh:Khatri</option><option value="Sikh:Kshatriya">Sikh:Kshatriya</option><option value="Sikh:Labana">Sikh:Labana</option><option value="Sikh:Ramdasia">Sikh:Ramdasia</option><option value="Sikh:Ramgharia">Sikh:Ramgharia</option><option value="Sikh:Ravidasia">Sikh:Ravidasia</option><option value="Sikh:Saini">Sikh:Saini</option>';
-				}
-				else if($row['ReligionID'] == 31 || $row['ReligionID'] == 32 || $row['ReligionID'] == 33 || $row['ReligionID'] == 34)
-				{
-								$caste = '<option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option>
-<option value="Jain:Digambar">Jain:Digambar</option><option value="Jain:Shwetamber">Jain:Shwetamber</option><option value="Jain:Vania">Jain:Vania</option>';
-				}
-				else if($row['ReligionID'] == 35 || $row['ReligionID'] == 36 || $row['ReligionID'] == 37 || $row['ReligionID'] == 38 || $row['ReligionID'] == 39)
-				{
-					$caste = '<option value="">---------Select Caste---------</option><option value="Doesn\'t Matter">Doesn\'t Matter</option>';
-				}
-				$caste = str_replace('<option value="'.$row['Caste'].'">', '<option value="'.$row['Caste'].'" selected>', $caste);
-				echo $caste;
-				?></select>
-				</span>
-				<br>
-				<span id="errmsg_caste" class="error"></span>
-				</td>
-				<td valign="top"><span id="loading_caste"></span></td>
-			</tr>
-
-			<tr>
-				<td class="td1" valign="top"><em>&nbsp;</em><label for="subcaste" style="padding-left: 3px;"><b>Sub caste / sect</b></label></td>
-				<td valign="top">
-				<input name="subcaste" id="subcaste" class="field" value="<?PHP echo stripslashes($row['SubCaste'])?>" onkeydown="this.className='field_filled'" onblur="checkStyle(this, 'field', 'field_filled');" type="text">
-				</td>
-			</tr>
+			
 
 			<tr>
 				<td class="td1" style="cursor: pointer;" onclick="focus_field('familyvalues');" valign="top"><em>*</em><b>Family Values</b></td>
@@ -751,11 +654,11 @@ if($row['dobstatus']==1)
 				</tr>
 
 					<tr height="33">
-						<td class="td1" style="cursor: pointer;" onclick="focus_field('stateofresidence');" valign="top"><em>*</em><b>State of Residence</b></td>
+						<td class="td1" style="cursor: pointer;" onclick="focus_field('stateofresidence');" valign="top"><em>*</em><b>State</b></td>
 						<td colspan="2" class="formselect" id="show_hide_state" valign="top">
 						<span id="statespan">
 						<select name="stateofresidence" id="stateofresidence" class="field" onfocus="toggleHint('show', 'stateofresidence')" onblur="validate_stateofresidence(this.name);">
-						<option value="">Select state</option>
+						<option value="-1">Select state</option>
 						<?PHP
 						$stateofresidence = "";
 				$sqlCountry = "SELECT * FROM states where CountryID=".$row['CountryID']." order by StateID";
@@ -793,7 +696,7 @@ if($row['dobstatus']==1)
 				<td class="td1" style="cursor: pointer;" onclick="focus_field('nearest_city');" valign="top"><b>&nbsp;&nbsp;&nbsp;City of Residence</b></td>
 				<td class="td1" id="show_hide_city" valign="top" width="200">
 					<span id="cityspan">
-					<select id="nearest_city" name="nearest_city" class="field" onfocus="toggleHint('show', 'nearest_city')" onblur="toggleHint('hide', 'nearest_city'); checkStyleSelect(this, 'field', 'field_filled');"><option value="">Select a city</option>
+					<select id="nearest_city" name="nearest_city" class="field" onfocus="toggleHint('show', 'nearest_city')" onblur="toggleHint('hide', 'nearest_city'); checkStyleSelect(this, 'field', 'field_filled');"><option value="-1">Select a city</option>
 					<?PHP
 					$cityofresidence = "";
 				$sqlCountry = "SELECT * FROM cities where CountryID=".$row['CountryID']." order by CityID";

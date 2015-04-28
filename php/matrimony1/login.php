@@ -2,6 +2,13 @@
 session_start();
 include("connection.php");
 
+/*social auth begin
+    $config ='socialauth/config.php';
+    require_once( 'socialauth/Social/Auth.php' );
+    $adapter = $socialAuth->authenticate( "facebook" );
+    $userData = $adapter->getUserProfile();
+//end*/
+
 $sqlsettings = "SELECT * from admin";
 $resultsettings = mysql_query($sqlsettings);
 $rowsettings = mysql_fetch_array($resultsettings);
@@ -41,7 +48,7 @@ $result = mysql_query($sql,$conn);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Gor Banjara matrimonial - Login</title>
+<title>Marry Banjara - Login</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/login.css">

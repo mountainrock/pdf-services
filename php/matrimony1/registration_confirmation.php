@@ -60,36 +60,7 @@ $rowsettings = mysql_fetch_array($resultsettings);
 				</div>
 				<!-- The top link table ends here -->
 			
-			<!-- The topbanner table start's here -->
-			<div style="width: 762px; background-color: rgb(255, 255, 255);">
-			<div style="border-top: 1px solid rgb(143, 167, 191); border-left: 1px solid rgb(143, 167, 191); border-right: 1px solid rgb(143, 167, 191);">
-
-
-				<!-- logo + banner space -->
-				<div style="padding: 2px 0pt 4px 0px;">
-					<div style="padding: 4px 0pt 4px 16px; width: 215px; float: left; text-align: left;">
-					<a href="index.php"><img src="images/matrimonial-logo-sm.gif" border="0"></a>
-					</div>
-				
-				</div><br clear="all">
 			
-			</div>
-			<!-- logo + banner space -->
-		
-					<div>
-					<div style="border-top: 2px solid rgb(143, 167, 191); border-bottom: 2px solid #000000; background-color: #000000;">
-					<div style="margin: 1px 0pt 1px 0px; padding: 3px 0pt 3px 0px; background-color: #990000;" class="mediumwhitebold">
-						
-	
-						</div>
-					</div>
-				</div>
-				<!-- midlinks + services space end's here -->
-
-
-			</div>
-			</div>
-			<!-- The topbanner table ends here -->
 			</center>
 
 <center>
@@ -105,7 +76,7 @@ $rowsettings = mysql_fetch_array($resultsettings);
 		<strong>Congratulations!</strong> Your Registration has been successfully Completed...
 		<br>
 		<br>
-		<a href="profile1.php">Click here to create your profile now!</a> your profile will be shown in website after the approval from website administration..
+		You can now login and update your profile! Your profile will be listed in website after the approval from website administration..
 		<?PHP
 		}
 		else{

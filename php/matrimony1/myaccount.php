@@ -36,7 +36,7 @@ $row = @mysql_fetch_array($result);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Gor Banjara matrimonial - My Account</title>
+<title>Marry Banjara - My Account</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="style.css">
 <style type="text/css" title="">
@@ -109,7 +109,7 @@ include "myleftbar.php";
 
 <!-- MAIN TABLE STARTS HERE  -->
 <div class="mediumblack">
-<b>Dear Member</b><font class="mediumblack"> (Profile ID: <?PHP echo $_SESSION['LoginID']?>)</font><br>
+<b>Dear Member</b><font class="mediumblack"> (Profile ID: <?PHP echo $_SESSION['UserID']?>)</font><br>
 <span style="line-height: 5px;"><br>
 <br></span></div>
 <span style="line-height: 5px;"><br></span>
