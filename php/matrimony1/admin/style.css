@@ -155,6 +155,8 @@ a:hover.delete2 {
 
 a.edit {
 	color:#0000ff;
+	font-weight: bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	text-align:center;	
 	vertical-align:middle;
@@ -191,7 +193,7 @@ a:hover.edit2 {
 
 .adminvalues {
 	color:#000000;
-	
+	font-weight: bold;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	vertical-align:middle;

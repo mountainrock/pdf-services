@@ -44,7 +44,8 @@ $rowsettings = mysql_fetch_array($resultsettings);
 	$mail->IsHTML(true);
 
 	$mail->Subject = $subject;
-	$email_layout = "<br><br><img src='".$rowsettings['url']."/images/matrimonial-logo-sm.gif'><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br>";
+	 $email_layout= '<font style="font-size:26pt;"><span style="color:#FF9D3D">GorBanjara </span><span style="color:#FC9E93">Matrimonial</span></font>';
+	$email_layout .= "<table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br>";
 	$mail->Body = $email_layout.$description;
 	$mail->Send();
 	}
@@ -54,7 +55,8 @@ $rowsettings = mysql_fetch_array($resultsettings);
 	{
 	$to=$row['EmailAddress'];
 	$subject=$subject;
-	$email_layout = "<br><br><img src='".$rowsettings['url']."/images/matrimonial-logo-sm.gif'><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br>";
+	// $email_layout= '<font style="font-size:26pt;"><span style="color:#FF9D3D">GorBanjara </span><span style="color:#FC9E93">Matrimonial</span></font>';
+	$email_layout = "<table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br>";
 	$description=$email_layout.$description;
 	$headers  = "MIME-Version: 1.0\r\n";
 	$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
