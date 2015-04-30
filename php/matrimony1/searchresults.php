@@ -199,7 +199,7 @@ while($row = @mysql_fetch_array($result))
 						if($_SESSION['UserID']!="")
 						{
 						?>
-						 <a href="profile.php?id=<?PHP echo stripslashes($row['LoginID'])?>">
+						 <a href="profile.php?id=<?PHP echo stripslashes($row['UserID'])?>">
 						<?PHP
 						}
 						else
@@ -227,7 +227,7 @@ while($row = @mysql_fetch_array($result))
     <td style="border-bottom: 1px solid #FEDFCB;"><strong>Age</strong> : <?PHP echo GetAge($row['BirthYear'], $row['BirthMonth'], $row['BirthDate'])?> yrs, </td>
   </tr>
   <tr>
-    <td style="border-bottom: 1px solid #FEDFCB;"><strong>Height</strong>: <?PHP echo stripslashes($row['Height'])?>, <strong> Sub Caste</strong>: <?PHP echo stripslashes($row['Religion'])?></td>
+    <td style="border-bottom: 1px solid #FEDFCB;"><strong>Height</strong>: <?PHP echo stripslashes($row['Height'])?>, <strong> Gothra </strong>: <?PHP echo stripslashes($row['Caste'])?></td>
   </tr>
   <tr>
     <td style="border-bottom: 1px solid #FEDFCB;"><strong>Profession</strong> : <?PHP echo stripslashes($row['Profession'])?></td>

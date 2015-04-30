@@ -78,7 +78,7 @@
 
 
 											  <tr>
-											    <td>Caste</td>
+											    <td>Gothra</td>
 												<td>
 													<?php include("sections/subcastes.php"); ?>
 												</td>

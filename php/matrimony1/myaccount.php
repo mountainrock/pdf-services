@@ -110,6 +110,17 @@ include "myleftbar.php";
 <!-- MAIN TABLE STARTS HERE  -->
 <div class="mediumblack">
 <b>Dear Member</b><font class="mediumblack"> (Profile ID: <?PHP echo $_SESSION['UserID']?>)</font><br>
+
+Your membership status is : <?PHP 
+
+if($_SESSION['GoldMember'] == "1"){
+echo "<b> Gold member</b>";
+}else{
+echo "Basic";
+}
+
+?>
+
 <span style="line-height: 5px;"><br>
 <br></span></div>
 <span style="line-height: 5px;"><br></span>

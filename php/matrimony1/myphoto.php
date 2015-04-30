@@ -23,7 +23,7 @@ include("thumb.php") ;
 			unlink(trim($_POST['photo1']));
 		}
 
-		if(trim($_POST['photo2'])!="")
+/*		if(trim($_POST['photo2'])!="")
 		{
 			unlink(trim($_POST['photo2']));
 		}
@@ -31,7 +31,7 @@ include("thumb.php") ;
 		if(trim($_POST['photo3'])!="")
 		{
 			unlink(trim($_POST['photo3']));
-		}
+		}*/
 		$adid=$_SESSION['UserID'];
 		$file_dir = "memberphotos/";
 		$file1 = $file_dir."img".$adid."_1".$_FILES['myfiles']['name'][0];
@@ -146,6 +146,7 @@ $row = @mysql_fetch_array($result);
 
 	</tbody></table>
 	<br>
+	<b>Note</b>: If you have problems uploading the photo, please email to : <b>support@gorbanjara.net</b> (when you email please provide the email id you used during registration).
 
 	<div style="padding-left: 127px; text-align: left;" class="mediumblack"></div>
 

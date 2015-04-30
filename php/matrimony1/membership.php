@@ -62,7 +62,14 @@ or to update your account to Gold Member by yourself, please select your prefera
 
 <br>
 <br>
+<?PHP
+if($_SESSION['UserID']=="")
+{
+?>
 Please Make sure that you are <a href="login.php">Logged in</a> Already...
+<?PHP
+}
+?>
 
 <br>
 <br>

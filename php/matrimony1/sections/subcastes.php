@@ -1,5 +1,5 @@
 <select id="caste" name="caste" >
-<option selected="true" value="">-- Select --</option>
+<option selected="true" value="">-- Any --</option>
   <?php
   for($i=0;$i< sizeof($subCastesArray); $i++){
     $casteSelected = $_SESSION['search_param_caste'] == $subCastesArray[$i] || $_REQUEST['caste'] == $subCastesArray[$i] ? "selected='selected'": "";

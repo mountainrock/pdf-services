@@ -47,7 +47,7 @@ mysql_query($delete);
 	$mail->IsHTML(true);   
 	
 	$mail->Subject = $subject;
-	$email_layout = "<br><br><img src='".$rowsettings['url']."/images/matrimonial-logo-sm.gif'><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br>Dear ".$_REQUEST['username'].", " . $description . "<br><br>Please click below to visit the site<br><br><a href='".$rowsettings['url']."'>".$rowsettings['url']."</a>";
+	$email_layout = "<br><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br>Dear Member, " . $description . "<br><br>Please click below to visit the site<br><br><a href='".$rowsettings['url']."'>".$rowsettings['url']."</a>";
 	$mail->Body = $email_layout;
 	$mail->Send();
 	}
@@ -55,7 +55,7 @@ mysql_query($delete);
 	{
 	$to=$_REQUEST['email'];
 	$subject=$subject;
-	$email_layout = "<br><br><img src='".$rowsettings['url']."/images/matrimonial-logo-sm.gif'><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br>Dear ".$_REQUEST['username'].", " . $description . "<br><br>Please click below to visit the site<br><br><a href='".$rowsettings['url']."'>".$rowsettings['url']."</a>";
+	$email_layout = "<br><br><table border='0' width='100%'><tr><Td colspan='2' background='".$rowsettings['url']."/images/footer_seprator.gif' height='2'></Td></tr></table><br><br>Dear Member, " . $description . "<br><br>Please click below to visit the site<br><br><a href='".$rowsettings['url']."'>".$rowsettings['url']."</a>";
 	$description=$email_layout;
 	$headers  = "MIME-Version: 1.0\r\n";
 	$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";

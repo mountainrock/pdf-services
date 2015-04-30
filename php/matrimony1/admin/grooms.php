@@ -161,7 +161,7 @@ Search By User ID : <input type="text" name="search">
 
 												if($row['GoldMember'] == 1)
 												{
-													$goldstatus = "<a class='edit' href='ggoldstatus.php?UserID=".$row['UserID']."&status=0&username=".$row['LoginID']."&email=".$row['EmailAddress']."'>Paid Member</a>";
+													$goldstatus = "<a class='edit' href='ggoldstatus.php?UserID=".$row['UserID']."&status=0&username=".$row['Name']."&email=".$row['EmailAddress']."'>Paid Member</a>";
 													$goldmembersince = date("M j, Y", strtotime($row['GoldMemberDate']));
 												}
 												else
@@ -174,12 +174,12 @@ Search By User ID : <input type="text" name="search">
 												if($row['Status'] == 1)
 												{
 													$status2 = "<strong>Confirmed</strong>";
-													$vprofile = "<a href='../v_profile.php?id=".$row['LoginID']."' target='_blank'>View Profile</a>";
+													$vprofile = "<a href='../v_profile.php?id=".$row['UserID']."' target='_blank'>View Profile</a>";
 												}
 												else
 												{
 													$status2 = "<strong>Not Confirmed</strong>";
-													$vprofile = "<a href='../view_profile.php?id=".$row['LoginID']."' target='_blank'>View Profile</a>";
+													$vprofile = "<a href='../view_profile.php?id=".$row['UserID']."' target='_blank'>View Profile</a>";
 												}
 
 												if ($color==0){

@@ -23,7 +23,7 @@ $result = mysql_query($sql,$conn);
 
 			$row = @mysql_fetch_array($result);
 			$_SESSION['UserID']=$row['UserID'];
-			$_SESSION['LoginID']=$row['LoginID'];
+			
 			$_SESSION['Name']=$row['Name'];
 			$_SESSION['Gender']=$row['Gender'];
 			$_SESSION['GoldMember']=$row['GoldMember'];

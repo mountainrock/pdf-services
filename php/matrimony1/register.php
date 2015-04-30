@@ -389,6 +389,8 @@ $age = GetAge(mysql_escape_string($_POST['year']), mysql_escape_string($_POST['m
 						<?php
 						if($_REQUEST['countryofresidence'] == $rowCountry['CountryID'])
 							echo "selected";
+						if($_REQUEST['countryofresidence'] == "" && $rowCountry['CountryID']== 1 )							
+							echo "selected";
 						?>
 						><?php echo $rowCountry['Country']?></option>
 						<?

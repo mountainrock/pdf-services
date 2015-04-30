@@ -10,12 +10,12 @@ $rowsettings = mysql_fetch_array($resultsettings);
 $msg = "";
 
 $states = 1;
-$sql = "SELECT * FROM users, user_profile, countries, states WHERE users.UserID=user_profile.UserID and users.CountryID=countries.CountryID  and user_profile.StateID=states.StateID and users.LoginID='".mysql_escape_string($_REQUEST['id'])."'";
+$sql = "SELECT * FROM users, user_profile, countries, states WHERE users.UserID=user_profile.UserID and users.CountryID=countries.CountryID  and user_profile.StateID=states.StateID and users.UserID='".mysql_escape_string($_REQUEST['id'])."'";
 $result = mysql_query($sql,$conn);
 
 if(@mysql_num_rows($result)<=0)
 {
-$sql = "SELECT * FROM users, user_profile, countries WHERE users.UserID=user_profile.UserID and users.CountryID=countries.CountryID and users.LoginID='".mysql_escape_string($_REQUEST['id'])."'";
+$sql = "SELECT * FROM users, user_profile, countries WHERE users.UserID=user_profile.UserID and users.CountryID=countries.CountryID and users.UserID='".mysql_escape_string($_REQUEST['id'])."'";
 $result = mysql_query($sql,$conn);
 $states = 0;
 }
@@ -23,7 +23,7 @@ if(@mysql_num_rows($result)!=0)
 {
 $row = @mysql_fetch_array($result);
 
-$sqlpartner = "SELECT * FROM users, partner_profile WHERE users.UserID=partner_profile.UserID and users.LoginID='".mysql_escape_string($_REQUEST['id'])."'";
+$sqlpartner = "SELECT * FROM users, partner_profile WHERE users.UserID=partner_profile.UserID and users.UserID='".mysql_escape_string($_REQUEST['id'])."'";
 $resultpartner = mysql_query($sqlpartner,$conn);
 $rowp = @mysql_fetch_array($resultpartner);
 }
@@ -31,7 +31,7 @@ $rowp = @mysql_fetch_array($resultpartner);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Marry Banjara - <?PHP echo $row['LoginID'] ?>'s Profile</title>
+<title>Marry Banjara - <?PHP echo $row['UserID'] ?>'s Profile</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/main.css">
@@ -115,7 +115,7 @@ echo $msg;
 	<td width="100%" height="20" colspan="2" class="largeblackbold">Name :  <?PHP echo $row['Name'] ?></td>
 </tr>
 <tr align="left" valign="top">
-	<td width="100%" height="20" colspan="2" class="largeblackbold">Profile ID : <?PHP echo $row['LoginID'] ?></td>
+	<td width="100%" height="20" colspan="2" class="largeblackbold">Profile ID : <?PHP echo $row['UserID'] ?></td>
 </tr>
 <tr>
 	<td align="left" nowrap="nowrap" width="4"><img src="images/arrow-grn-4x7.gif" border="0" height="7" width="4"></td>
@@ -1071,7 +1071,7 @@ $religion = "Doesn't Matter";
 
 <div class="container" style="background-color:#FFF7FF; ">
 <?PHP
-if($row['PhoneStatus']=="telephone" && $row['DisplayContactStatus']=="Show")
+if($row['PhoneStatus']=="telephone" && $_SESSION['GoldMember']=="1")
 {
 ?>
 <div class="div1">Telephone</div>
@@ -1080,7 +1080,7 @@ if($row['PhoneStatus']=="telephone" && $row['DisplayContactStatus']=="Show")
 	<br clear="all">
 <?PHP
 }
-else if($row['PhoneStatus']!="telephone" && $row['DisplayContactStatus']=="Show")
+if($row['PhoneStatus']!="telephone" && $_SESSION['GoldMember']=="1")
 {
 ?>
 
@@ -1091,6 +1091,17 @@ else if($row['PhoneStatus']!="telephone" && $row['DisplayContactStatus']=="Show"
 <?PHP
 }
 ?>
+<?PHP
+if( $_SESSION['GoldMember']!="1"){
+?>
+
+	<div >Please <a href="paidmembership.php"> upgrade membership</a> to view contact details.</div>
+	<br clear="all">
+<?PHP
+}
+?>
+
+
 	<div class="div1">Contact Person</div>
 	<div class="div2">:</div>
 	<div class="div3"><?PHP echo stripslashes($row['ContactPersonName'])?></div>
@@ -1104,26 +1115,7 @@ else if($row['PhoneStatus']!="telephone" && $row['DisplayContactStatus']=="Show"
 	<div class="div1">Convenient Time to Call</div>
 	<div class="div2">:</div>
 	<div class="div3"><?PHP echo stripslashes($row['ConvenientCallTime'])?></div>
-	<br clear="all">
-			<div class="div1" style="float: left; width: 133px;">Display Option</div>
-		<div class="div2" style="float: left; width: 4px;">:</div>
-		<div style="width: 413px; float: right;">
-		<?PHP
-		if (stripslashes($row['DisplayContactStatus'])=="Show")
-		{
-		?>
-		You have chosen to display your contact details to other members. To change your display option
-		<?PHP
-		}
-		else
-		{
-		?>
-			You have chosen not to display your contact details to other members. To change your display option
-		<?PHP
-		}
-		?>
-		</div>
-		<br clear="all">
+	
 
 </div>
 </div>

@@ -60,7 +60,7 @@ class Social_Adapter {
     }
 
     function goToCallbackPage() {
-    Social_Auth::session()->set( "sa_session.{$this->network_name}.sa_callback", "http://gorbanjara.net/register.php" );
+    Social_Auth::session()->set( "sa_session.{$this->network_name}.sa_callback", "http://gorbanjara.net/register-socialauth.php" );
         $callback_url = Social_Auth::session()->get( "sa_session.{$this->network_name}.sa_callback" );
         // Flush session
         Social_Auth::session()->deleteByKey( "sa_session.{$this->network_name}.sa_callback" );

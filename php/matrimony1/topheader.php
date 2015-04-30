@@ -43,7 +43,7 @@ if($_SESSION['UserID']!="")
 
 	<td width="260">&nbsp;</td>
 	<td><a href="my_profile.php" title="My Profile" style="color:#F1F1F1;border-right:1px solid #FFF;"><strong>My Profile&nbsp;</strong></a> </td>
-	<td ><a href="logout.php" title="Log Out" style="color:#F1F1F1;"><strong>Logout [<?PHP echo $_SESSION['Name']?>]</strong></a></td>
+	<td ><a href="logout.php" title="Log Out" style="color:#F1F1F1;"><strong>Logout [<?PHP echo substr($_SESSION['Name'], 0, strpos($_SESSION['Name'], ' '));?>]</strong></a></td>
 </tr>
 </table>
 

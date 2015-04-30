@@ -16,13 +16,14 @@ $rowsettings = mysql_fetch_array($resultsettings);
 		if(@mysql_num_rows($result) != 0)
 		{
 			$row = @mysql_fetch_array($result);
-			$query5 = "update users set Status=1 where ConfirmationCode='".mysql_escape_string($_REQUEST['confirm'])."'";
+			$query5 = "update users set Status=1,ApprovalStatus=1 where ConfirmationCode='".mysql_escape_string($_REQUEST['confirm'])."'";
 			
 			$result5 = mysql_query($query5);
 			$msg = 1;
 
 			$_SESSION['UserID_reg']=$row['UserID'];
-			$_SESSION['LoginID_reg']=$row['LoginID'];
+			$_SESSION['UserID']=$row['UserID'];
+			$_SESSION['Name']=$row['Name'];
 			$_SESSION['EmailAddress_reg']=$row['EmailAddress'];
 			$insert = "insert into user_profile(UserID) VALUES(".$row['UserID'].")";
 			
@@ -38,7 +39,7 @@ $rowsettings = mysql_fetch_array($resultsettings);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Marry Banjara - Registration Confirmation</title>
+<title>Gor Banjara - Registration Confirmation</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/registrationconfirmation.css">
@@ -76,7 +77,7 @@ $rowsettings = mysql_fetch_array($resultsettings);
 		<strong>Congratulations!</strong> Your Registration has been successfully Completed...
 		<br>
 		<br>
-		You can now login and update your profile! Your profile will be listed in website after the approval from website administration..
+		Your profile will be listed in website and you can now update your profile. <b>Please upload your photo from <a href="my_profile.php">My Profile</a> or from <a href="myphoto.php">edit photo page here </a> to get better response!</b>
 		<?PHP
 		}
 		else{
