@@ -40,7 +40,9 @@ public class QuestionBankController {
 	}
 
 	@RequestMapping(value = { "/qa/listJson" }, method = RequestMethod.GET)
-	public  @ResponseBody List showAllJson(@RequestParam(value="password",required=false) String password,@RequestParam(value="page") int page, @RequestParam(value="size") int size, HttpServletRequest request) {
+	public  @ResponseBody List showAllJson(@RequestParam(value="password",required=false) String password,@RequestParam(value="page") int page, @RequestParam(value="size") int size, HttpServletRequest request, HttpServletResponse response) {
+		setJsonHeaders(response);
+		
 		if (validateUser.validate(ValidateUser.USER_ADMIN, password,request.getSession(true))) {
 			return questionAnswerDAO.readAll(page, size);
 		} else {
@@ -48,6 +50,13 @@ public class QuestionBankController {
 			l.add("Invalid password");
 			return l;
 		}
+	}
+
+	private void setJsonHeaders(HttpServletResponse response) {
+		response.setContentType("application/json");
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+		response.setHeader("Access-Control-Allow-Credentials", "true");
 	}
 	
 	@RequestMapping(value = { "/qa/{id}" }, method = RequestMethod.GET)
@@ -59,7 +68,7 @@ public class QuestionBankController {
 	
 	@RequestMapping(value = { "/qajson/{id}.json" }, headers="Accept=*/*", method = RequestMethod.GET)
 	public @ResponseBody QuestionAnswer readJson(@PathVariable("id") Long id, HttpServletResponse response) {
-		response.setContentType("application/json");
+		setJsonHeaders(response);
 		return questionAnswerDAO.read(id);
 	}
 
