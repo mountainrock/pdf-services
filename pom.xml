@@ -55,6 +55,12 @@
 			<groupId>commons-chain</groupId>
 			<artifactId>commons-chain</artifactId>
 			<version>1.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>portlet-api</artifactId>
+					<groupId>javax.portlet</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -93,6 +99,21 @@
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity-tools</artifactId>
 			<version>2.0-beta3</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>struts-core</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>struts-taglib</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>struts-tiles</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+								
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -134,12 +155,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.jdbc
-			</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.jms
 			</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
